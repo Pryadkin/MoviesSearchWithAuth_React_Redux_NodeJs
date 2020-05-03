@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHttp } from '../hooks/http.hook';
+import { useMessage } from '../hooks/message.hook';
+import { AuthContext } from '../context/AuthContext';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { useMessage } from '../hooks/message.hook';
 
 export const AuthPage = () => {
+  const auth = useContext(AuthContext);
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({
@@ -22,20 +24,18 @@ export const AuthPage = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const registerHandler = async (e) => {
-    e.preventDefault();
+  const registerHandler = async (err) => {
     try {
       const data = await request('http://localhost:5000/api/auth/register', 'POST', { ...form })
       message(data.message);
-    } catch (e) { }
+    } catch (err) { }
   }
 
-  const loginHandler = async (e) => {
-    e.preventDefault();
+  const loginHandler = async (err) => {
     try {
       const data = await request('http://localhost:5000/api/auth/login', 'POST', { ...form })
-      message(data.message);
-    } catch (e) { }
+      auth.login(data.token, data.userId);
+    } catch (err) { }
   }
 
   return (
@@ -58,9 +58,6 @@ export const AuthPage = () => {
                 value={form.email}
                 onChange={changeHandler}
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="password">
