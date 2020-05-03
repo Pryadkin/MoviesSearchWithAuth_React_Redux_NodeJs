@@ -26,7 +26,15 @@ export const AuthPage = () => {
     e.preventDefault();
     try {
       const data = await request('http://localhost:5000/api/auth/register', 'POST', { ...form })
-      message(data.message)
+      message(data.message);
+    } catch (e) { }
+  }
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await request('http://localhost:5000/api/auth/login', 'POST', { ...form })
+      message(data.message);
     } catch (e) { }
   }
 
@@ -80,6 +88,7 @@ export const AuthPage = () => {
               <Button
                 variant="primary"
                 type="submit"
+                onClick={loginHandler}
                 disabled={loading}
               >
                 Войти
