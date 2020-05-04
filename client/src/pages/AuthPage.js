@@ -43,7 +43,7 @@ export const AuthPage = () => {
       <div className="row">
         <div className="col">
           <h1>
-            Сократи Ссылку
+            Авторизация
           </h1>
 
           <Form style={{ width: 300 }}>

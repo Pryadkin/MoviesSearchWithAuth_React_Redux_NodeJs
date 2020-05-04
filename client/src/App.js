@@ -8,10 +8,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const { token, login, logout, userId } = useAuth;
+  const { token, login, logout, userId } = useAuth();
   const isAuthenticated = !!token;
-  const routes = useRoutes(false);
-  console.log(useAuth)
+  const routes = useRoutes(isAuthenticated);
+
   return (
     <AuthContext.Provider value={{
       token, login, logout, userId, isAuthenticated
