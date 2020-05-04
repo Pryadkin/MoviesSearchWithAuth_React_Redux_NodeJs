@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ProfilePage } from './pages/ProfilePage';
 import { SearchFilms } from './pages/SearchFilms';
-import { AuthPage } from './pages/AuthPage';
+import { AuthPage } from './pages/AuthPage/AuthPage';
 
 export const useRoutes = isAuthenticated => {
   if (isAuthenticated) {

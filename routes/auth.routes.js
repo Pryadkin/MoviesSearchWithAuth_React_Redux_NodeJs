@@ -10,7 +10,8 @@ const config = require('config')
 router.post(
   '/register',
   [
-    check('email', 'Некорректный email').isEmail(),
+    check('name', 'Введите имя').notEmpty(),
+    check('email', 'Некорректный email').normalizeEmail().isEmail(),
     check('password', 'Минимальная длина пароля 6 символов').isLength({ min: 6 })
   ],
   async (req, res) => {
@@ -24,7 +25,7 @@ router.post(
         })
       }
 
-      const { email, password } = req.body;
+      const { name, email, password } = req.body;
 
       const candidate = await User.findOne({ email: email })
 
@@ -33,7 +34,7 @@ router.post(
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      const user = new User({ email, password: hashedPassword });
+      const user = new User({ name, email, password: hashedPassword });
 
       await user.save();
 
