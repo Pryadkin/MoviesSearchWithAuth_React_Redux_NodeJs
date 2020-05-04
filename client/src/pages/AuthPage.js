@@ -4,15 +4,14 @@ import { useMessage } from '../hooks/message.hook';
 import { AuthContext } from '../context/AuthContext';
 
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 export const AuthPage = () => {
   const auth = useContext(AuthContext);
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({
-    email: '', password: ''
+    email: 'q@q.qq', password: 'qqqqqq'
   })
 
   useEffect(() => {
@@ -24,14 +23,14 @@ export const AuthPage = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const registerHandler = async (err) => {
+  const registerHandler = async () => {
     try {
       const data = await request('http://localhost:5000/api/auth/register', 'POST', { ...form })
       message(data.message);
     } catch (err) { }
   }
 
-  const loginHandler = async (err) => {
+  const loginHandler = async () => {
     try {
       const data = await request('http://localhost:5000/api/auth/login', 'POST', { ...form })
       auth.login(data.token, data.userId);
@@ -46,7 +45,7 @@ export const AuthPage = () => {
             Авторизация
           </h1>
 
-          <Form style={{ width: 300 }}>
+          <Form style={{ width: 300, margin: "auto" }}>
             <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>
               <Form.Control
