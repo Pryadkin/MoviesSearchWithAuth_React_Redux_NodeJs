@@ -4,7 +4,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const config = require('config')
+const config = require('config');
 
 // /api/auth/register
 router.post(
@@ -22,15 +22,15 @@ router.post(
         return res.status(400).json({
           errors: errors.array(),
           message: 'Некорректные данные при регистрации'
-        })
+        });
       }
 
       const { name, email, password } = req.body;
 
-      const candidate = await User.findOne({ email: email })
+      const candidate = await User.findOne({ email: email });
 
       if (candidate) {
-        return res.status(400).json({ message: 'Такой пользователь уже существует' })
+        return res.status(400).json({ message: 'Такой пользователь уже существует' });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
@@ -43,7 +43,7 @@ router.post(
     } catch (err) {
       res.status(500).json({ message: 'Что-то пошло не так' });
     }
-  })
+  });
 
 // /api/auth/login
 router.post(
@@ -54,40 +54,40 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const errors = validationResult(req)
+      const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
           message: 'Некорректные данные при входе в систему'
-        })
+        });
       }
 
-      const { email, password } = req.body
+      const { email, password } = req.body;
 
-      const user = await User.findOne({ email })
+      const user = await User.findOne({ email });
 
       if (!user) {
-        return res.status(400).json({ message: 'Пользователь не найден' })
+        return res.status(400).json({ message: 'Пользователь не найден' });
       }
 
-      const isMatch = await bcrypt.compare(password, user.password)
+      const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res.status(400).json({ message: 'Неверный пароль, попробуйте снова' })  // Существует мнение, что данное сообщение лучше не отправлять, чтобы не помогать хакерам 
+        return res.status(400).json({ message: 'Неверный пароль, попробуйте снова' });  // Существует мнение, что данное сообщение лучше не отправлять, чтобы не помогать хакерам 
       }
 
       const token = jwt.sign(
         { userId: user.id },
         config.get('jwtSecret'),
         { expiresIn: '1h' }
-      )
+      );
 
-      res.json({ token, userId: user.id })
+      res.json({ token, userId: user.id });
 
     } catch (err) {
       res.status(500).json('{message: Что-то пошло не так');
     }
-  })
+  });
 
 module.exports = router;

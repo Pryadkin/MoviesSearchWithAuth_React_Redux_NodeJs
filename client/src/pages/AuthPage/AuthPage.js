@@ -6,10 +6,11 @@ import Registration from './Registration';
 import Login from './Login';
 
 export const AuthPage = () => {
+  console.log('hey')
   const auth = useContext(AuthContext);
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
-  const [login, isLogin] = useState(false);
+  const [loginPageActive, isloginPageActive] = useState(true);
   const [form, setForm] = useState({
     name: 'Anton', email: 'q@q.qq', password: 'qqqqqq'
   });
@@ -39,41 +40,29 @@ export const AuthPage = () => {
 
   return (
     <div className="container">
-      {
-        login
-          ?
-          <Login
-            email={form.email}
-            password={form.password}
-            changeHandler={changeHandler}
-            registerHandler={registerHandler}
-            loginHandler={loginHandler}
-            loading={loading}
-            isLogin={isLogin}
-          />
-          :
-          <Registration
-            name={form.name}
-            email={form.email}
-            password={form.password}
-            changeHandler={changeHandler}
-            registerHandler={registerHandler}
-            loginHandler={loginHandler}
-            loading={loading}
-            isLogin={isLogin}
-          />
+      {loginPageActive
+        ?
+        <Login
+          email={form.email}
+          password={form.password}
+          changeHandler={changeHandler}
+          registerHandler={registerHandler}
+          loginHandler={loginHandler}
+          loading={loading}
+          isloginPageActive={isloginPageActive}
+        />
+        :
+        <Registration
+          name={form.name}
+          email={form.email}
+          password={form.password}
+          changeHandler={changeHandler}
+          registerHandler={registerHandler}
+          loginHandler={loginHandler}
+          loading={loading}
+          isloginPageActive={isloginPageActive}
+        />
       }
-
-
-
-
     </div>
   )
 };
-
-// name,
-//   email,
-//   password,
-//   changeHandler,
-//   registerHandler,
-//   loading

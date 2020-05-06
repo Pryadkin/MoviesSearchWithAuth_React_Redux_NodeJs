@@ -13,19 +13,17 @@ export const ProfilePage = () => {
     auth.logout();
   }
   return (
-    <div>
-      <>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">User name</Navbar.Brand>
-          <Nav className="mr-auto">
-            <Link className="search-link" to="/search">Search</Link>
-          </Nav>
-          <Button href="/" onClick={logoutHandler}>
-            Log out
-          </Button>
-        </Navbar>
-      </>
-    </div >
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">User name</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Link className="search-link" to="/search">Search</Link>
+        </Nav>
+        <Button href="/" onClick={logoutHandler}>
+          Log out
+        </Button>
+      </Navbar>
+    </>
   )
 };
 

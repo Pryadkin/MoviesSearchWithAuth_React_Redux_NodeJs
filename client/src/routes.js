@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ProfilePage } from './pages/ProfilePage';
-import { SearchFilms } from './pages/SearchFilms';
+import SearchFilmsPage from './pages/SearchFilmsPage';
 import { AuthPage } from './pages/AuthPage/AuthPage';
 
 export const useRoutes = isAuthenticated => {
@@ -12,7 +12,7 @@ export const useRoutes = isAuthenticated => {
           <ProfilePage />
         </Route>
         <Route path="/search" exact>
-          <SearchFilms />
+          <SearchFilmsPage />
         </Route>
         <Route path="/logout" exact>
           <AuthPage />

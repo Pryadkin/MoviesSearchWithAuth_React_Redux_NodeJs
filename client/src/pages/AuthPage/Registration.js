@@ -9,11 +9,11 @@ const Registration = ({
   changeHandler,
   registerHandler,
   loading,
-  isLogin
+  isloginPageActive
 }) => {
 
   const getLoginPage = () => {
-    isLogin(true);
+    isloginPageActive(true);
   };
 
   return (
@@ -29,7 +29,6 @@ const Registration = ({
             type="Name"
             placeholder="Enter name"
             name="Name"
-            type="text"
             className="validate"
             value={name}
             onChange={changeHandler}
@@ -42,7 +41,6 @@ const Registration = ({
             type="email"
             placeholder="Enter email"
             name="email"
-            type="text"
             className="validate"
             value={email}
             onChange={changeHandler}
@@ -54,7 +52,6 @@ const Registration = ({
           <Form.Control
             type="password"
             placeholder="Password"
-            type="password"
             name="password"
             className="validate"
             value={password}

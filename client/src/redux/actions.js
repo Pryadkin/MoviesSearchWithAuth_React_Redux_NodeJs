@@ -1,0 +1,58 @@
+import { getMovie } from '../requests';
+
+export const ADD_MOVIE = "ADD_MOVIE";
+export const SEARCH_MOVIE = "SEARCH_MOVIE";
+export const CLEAN_MOVIES = "CLEAN_MOVIES";
+export const IS_LOADING = "IS_LOADING";
+
+export const searchMovie = (movie) => ({
+  type: SEARCH_MOVIE,
+  payload: {
+    movie
+  }
+});
+
+export const cleanMovies = () => ({
+  type: CLEAN_MOVIES
+});
+
+export const isLoading = () => ({
+  type: IS_LOADING
+});
+
+export const fetchMovie = (nameMovie) => {
+  return async dispatch => {
+    dispatch(cleanMovies());
+    dispatch(isLoading());
+    const movies = await getMovie(nameMovie)
+    movies.map(movie => {
+      dispatch(searchMovie(movie))
+    })
+    dispatch(isLoading());
+  }
+};
+
+
+
+
+///////////////////////////////////////////////////
+
+// export const addMovie = (url) => ({
+//   type: ADD_MOVIE,
+//   payload: url
+// })
+
+export const removePost = (id) => ({
+  type: "REMOVE_POST",
+  payload: id
+});
+
+// export const fetchMovie = () => {
+//   return dispatch => {
+//     getPoster('/kqjL17yufvn9OVLyXYpvtyrFfak.jpg', 0)
+//     .then((urlImages) => {
+//       dispatch(addMovie(urlImages))
+//     })   
+//   }
+// }
+
