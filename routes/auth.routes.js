@@ -77,13 +77,19 @@ router.post(
         return res.status(400).json({ message: 'Неверный пароль, попробуйте снова' });  // Существует мнение, что данное сообщение лучше не отправлять, чтобы не помогать хакерам 
       }
 
+      const payload = {
+        userId: user.id,
+        userName: user.name,
+      };
+
       const token = jwt.sign(
-        { userId: user.id },
+        payload,
         config.get('jwtSecret'),
         { expiresIn: '1h' }
       );
+      console.log(token)
 
-      res.json({ token, userId: user.id });
+      res.json({ token, payload });
 
     } catch (err) {
       res.status(500).json('{message: Что-то пошло не так');

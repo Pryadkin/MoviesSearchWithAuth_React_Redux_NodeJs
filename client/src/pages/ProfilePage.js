@@ -6,16 +6,19 @@ import './ProfilePage.scss';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 export const ProfilePage = () => {
-  const auth = useContext(AuthContext);
+  const { logout, userData } = useContext(AuthContext);
 
   const logoutHandler = (e) => {
     e.preventDefault();
-    auth.logout();
+    logout();
   }
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">User name</Navbar.Brand>
+        {userData ?
+          <Navbar.Brand href="#home">{userData.userName}</Navbar.Brand>
+          : null
+        }
         <Nav className="mr-auto">
           <Link className="search-link" to="/search">Search</Link>
         </Nav>
@@ -26,12 +29,3 @@ export const ProfilePage = () => {
     </>
   )
 };
-
-/*
-id
-userName
-userSurname
-films
-
-
-*/

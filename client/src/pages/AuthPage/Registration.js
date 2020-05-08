@@ -26,9 +26,8 @@ const Registration = ({
         <Form.Group controlId="email">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            type="Name"
             placeholder="Enter name"
-            name="Name"
+            name="name"
             className="validate"
             value={name}
             onChange={changeHandler}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchMovie } from '../redux/actions';
 
-import { Container, Form, Button, Navbar, Nav } from 'react-bootstrap';
+import { Form, Button, Navbar, Nav } from 'react-bootstrap';
 
 const SearchFilms = () => {
   const [title, setTitle] = useState('mad max');
@@ -26,9 +26,12 @@ const SearchFilms = () => {
           onChange={e => setTitle(e.target.value)}
         />
 
-        <Button variant="primary" type="submit">
+        <Button
+          variant="primary"
+          type="submit"
+        >
           Submit
-      </Button>
+        </Button>
       </Form>
     </Navbar>
   )

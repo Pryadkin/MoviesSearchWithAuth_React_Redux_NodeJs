@@ -6,13 +6,12 @@ import Registration from './Registration';
 import Login from './Login';
 
 export const AuthPage = () => {
-  console.log('hey')
   const auth = useContext(AuthContext);
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
   const [loginPageActive, isloginPageActive] = useState(true);
   const [form, setForm] = useState({
-    name: 'Anton', email: 'q@q.qq', password: 'qqqqqq'
+    name: '2', email: 'q@q.qq', password: 'qqqqqq'
   });
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export const AuthPage = () => {
   const loginHandler = async () => {
     try {
       const data = await request('http://localhost:5000/api/auth/login', 'POST', { ...form });
-      auth.login(data.token, data.userId);
+      auth.login(data.token, data.payload);
     } catch (err) { }
   };
 

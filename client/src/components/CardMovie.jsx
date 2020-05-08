@@ -12,9 +12,13 @@ const CardMovie = (props) => {
 
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
+  const addMovie = () => {
+
+  };
+
+  const removeMovie = () => {
     dispatch(removePost(id))
-  }
+  };
 
   return (
     <div className="card">
@@ -29,13 +33,13 @@ const CardMovie = (props) => {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={clickHandler}
+          onClick={addMovie}
         >
-          Remove movie
+          add
         </button>
       </div>
     </div>
   )
-}
+};
 
 export default CardMovie;

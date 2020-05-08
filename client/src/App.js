@@ -8,13 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const { token, login, logout, userId } = useAuth();
+  const { token, login, logout, userData } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
 
   return (
     <AuthContext.Provider value={{
-      token, login, logout, userId, isAuthenticated
+      token, userData, login, logout, isAuthenticated
     }}>
       <Router>
         <div className="App">
