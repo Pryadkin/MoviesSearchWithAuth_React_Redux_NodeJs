@@ -8,8 +8,14 @@ import {
 
 const initialState = {
   movies: [],
+  profileMovies: [],
   isLoading: false
 };
+
+const addMovie = (profileMovies, movies, payload) => {
+  const changeProfileMovies = [...profileMovies, movies.filter(movie => movie.id === payload)];
+  return changeProfileMovies;
+}
 
 export const movieSearchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,17 +35,16 @@ export const movieSearchReducer = (state = initialState, action) => {
     case ADD_MOVIE:
       return {
         ...state,
-        movies: [
-          {
-            title: action.payload,
-            id: uniqid()
-          }, ...state.movies
-        ]
+        profileMovies: addMovie(
+          state.profileMovies,
+          state.movies,
+          action.payload
+        ),
       };
     case "REMOVE_POST":
       return {
         ...state,
-        movies: state.movies.filter(item => item.id !== action.payload)
+        movies: state.movies.filter(movie => movie.id !== action.payload)
       };
     case IS_LOADING:
       return {
@@ -49,3 +54,5 @@ export const movieSearchReducer = (state = initialState, action) => {
     default: return state
   }
 };
+
+

@@ -12,6 +12,11 @@ export const searchMovie = (movie) => ({
   }
 });
 
+export const addMovie = (id) => ({
+  type: ADD_MOVIE,
+  payload: id
+})
+
 export const cleanMovies = () => ({
   type: CLEAN_MOVIES
 });
@@ -37,10 +42,7 @@ export const fetchMovie = (nameMovie) => {
 
 ///////////////////////////////////////////////////
 
-// export const addMovie = (url) => ({
-//   type: ADD_MOVIE,
-//   payload: url
-// })
+
 
 export const removePost = (id) => ({
   type: "REMOVE_POST",

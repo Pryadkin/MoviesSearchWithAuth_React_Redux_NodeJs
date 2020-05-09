@@ -12,6 +12,7 @@ export const ProfilePage = () => {
     e.preventDefault();
     logout();
   }
+
   return (
     <>
       <Navbar bg="dark" variant="dark">

@@ -6,21 +6,21 @@ import Loading from './Loading';
 import './CardsMovies.scss';
 
 const CardsMovies = () => {
-  const movies = useSelector(state => state.movies.movies);
-  let isLoading = useSelector(state => state.movies.isLoading);
+  const movies = useSelector(state => state.movieSearchReducer.movies);
+  let isLoading = useSelector(state => state.movieSearchReducer.isLoading);
 
   return (
     <div className="search-films-container">
       {isLoading
         ? <Loading />
-        : movies.map(movies => {
+        : movies.map(movie => {
           return (
             <CardMovie
-              key={movies.id}
-              id={movies.id}
-              title={movies.name}
-              poster={movies.poster_path}
-              overview={movies.overview}
+              key={movie.id}
+              id={movie.id}
+              title={movie.name}
+              poster={movie.poster_path}
+              overview={movie.overview}
             />
           )
         })}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { removePost } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMovie } from '../redux/actions';
 
 const CardMovie = (props) => {
   const {
@@ -10,14 +10,16 @@ const CardMovie = (props) => {
     overview
   } = props;
 
+  const state = useSelector(state => state.movieSearchReducer);
+
   const dispatch = useDispatch();
 
-  const addMovie = () => {
+  const addMovieHandler = () => {
+    dispatch(addMovie(id))
+    setTimeout(() => {
 
-  };
-
-  const removeMovie = () => {
-    dispatch(removePost(id))
+      console.log(state)
+    }, 1000)
   };
 
   return (
@@ -33,7 +35,7 @@ const CardMovie = (props) => {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={addMovie}
+          onClick={addMovieHandler}
         >
           add
         </button>

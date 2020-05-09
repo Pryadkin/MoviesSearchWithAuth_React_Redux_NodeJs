@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchMovie } from '../redux/actions';
+import { Link } from 'react-router-dom';
 
 import { Form, Button, Navbar, Nav } from 'react-bootstrap';
 
@@ -16,7 +17,9 @@ const SearchFilms = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand>Search movie</Navbar.Brand>
-      <Nav className="mr-auto"></Nav>
+      <Nav className="mr-auto">
+        <Link className="profile-link" to="/profile">Home</Link>
+      </Nav>
 
       <Form inline onSubmit={submitHandler}>
         <Form.Control
