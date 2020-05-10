@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMovie } from '../redux/actions';
+import { addMovie } from '../../redux/actions';
 
 const CardMovie = (props) => {
   const {

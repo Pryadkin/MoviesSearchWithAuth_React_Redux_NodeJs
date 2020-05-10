@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button, Navbar, Nav } from 'react-bootstrap';
 
 const SearchFilms = () => {
-  const [title, setTitle] = useState('mad max');
+  const [title, setTitle] = useState('big');
   const dispatch = useDispatch();
   const submitHandler = e => {
     e.preventDefault();

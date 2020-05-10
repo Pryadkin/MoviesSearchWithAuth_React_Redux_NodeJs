@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { ProfilePage } from './pages/ProfilePage';
+import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 import SearchFilmsPage from './pages/SearchFilmsPage';
 import { AuthPage } from './pages/AuthPage/AuthPage';
 

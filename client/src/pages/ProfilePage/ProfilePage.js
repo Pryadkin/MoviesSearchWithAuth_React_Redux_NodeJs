@@ -1,25 +1,30 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { useSelector } from 'react-redux';
+import CardMovie from '../../components/CardsMovies/CardMovie';
 
-import CardsMoviesProfile from '../components/CardMovieProfile'
+import CardsMovies from '../../components/CardsMovies/CardsMovies';
 
 import './ProfilePage.scss';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 export const ProfilePage = () => {
   const { logout, userData } = useContext(AuthContext);
-  // const profileMovies = useSelector(state => state.movieSearchReducer.profileMovies);
+  const [movie, getMovies] = useState([]);
+  const profileMovies = useSelector(state => state.movieSearchReducer.profileMovies);
 
   const logoutHandler = (e) => {
     e.preventDefault();
     logout();
   }
 
-  // useEffect(() => {
-  //   console.log(profileMovies)
-  // }, [profileMovies])
+  useEffect(() => {
+    const film = (
+      <CardsMovies movies={profileMovies} />
+    );
+    getMovies(film);
+  }, [profileMovies])
 
   return (
     <>
@@ -35,7 +40,7 @@ export const ProfilePage = () => {
           Log out
         </Button>
       </Navbar>
-      <CardsMoviesProfile />
+      {movie}
     </>
   )
 };

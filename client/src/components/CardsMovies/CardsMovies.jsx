@@ -1,12 +1,12 @@
 import React from 'react';
 import CardMovie from './CardMovie';
 import { useSelector } from 'react-redux';
-import Loading from './Loading';
+import Loading from '../Loading';
 
 import './CardsMovies.scss';
 
-const CardsMovies = () => {
-  const movies = useSelector(state => state.movieSearchReducer.movies);
+const CardsMovies = ({ movies }) => {
+  // const movies = useSelector(state => state.movieSearchReducer.movies);
   let isLoading = useSelector(state => state.movieSearchReducer.isLoading);
 
   return (
