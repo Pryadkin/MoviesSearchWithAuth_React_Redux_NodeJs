@@ -87,7 +87,6 @@ router.post(
         config.get('jwtSecret'),
         { expiresIn: '1h' }
       );
-      console.log(token)
 
       res.json({ token, payload });
 

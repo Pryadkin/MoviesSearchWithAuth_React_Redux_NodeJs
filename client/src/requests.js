@@ -9,6 +9,7 @@ export const getPoster = async (
   const secure_base_url = json.images.secure_base_url;
   const backdrop_sizes = json.images.backdrop_sizes;
   const img = urlImg;
+  console.log(`${secure_base_url}${backdrop_sizes[qualityImg]}${img}`)
   return `${secure_base_url}${backdrop_sizes[qualityImg]}${img}`;
 };
 
@@ -20,8 +21,8 @@ export const getMovie = async (name) => {
     return movie.poster_path !== null;
   });
   const moviesWithFullPathForPosters = moviesWithPosters.map(async (item) => {
-    item.poster_path = await getPoster(item.poster_path);
-    item.backdrop_path = await getPoster(item.backdrop_path);
+    item.poster_path = `https://image.tmdb.org/t/p/w300${item.poster_path}`;
+    item.backdrop_path = `https://image.tmdb.org/t/p/w300${item.backdrop_path}`;
     return item;
   });
   return Promise.all(moviesWithFullPathForPosters);

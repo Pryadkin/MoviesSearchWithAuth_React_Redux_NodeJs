@@ -12,11 +12,6 @@ const initialState = {
   isLoading: false
 };
 
-const addMovie = (profileMovies, movies, payload) => {
-  const changeProfileMovies = [...profileMovies, movies.filter(movie => movie.id === payload)];
-  return changeProfileMovies;
-}
-
 export const movieSearchReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_MOVIE:
@@ -35,11 +30,7 @@ export const movieSearchReducer = (state = initialState, action) => {
     case ADD_MOVIE:
       return {
         ...state,
-        profileMovies: addMovie(
-          state.profileMovies,
-          state.movies,
-          action.payload
-        ),
+        profileMovies: [...state.profileMovies, action.payload]
       };
     case "REMOVE_POST":
       return {

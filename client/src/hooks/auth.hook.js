@@ -9,11 +9,16 @@ export const useAuth = () => {
   const login = useCallback((jwtToken, data) => {
     setToken(jwtToken);
     setUserData(data);
-    console.log(data)
 
-    localStorage.setItem(storageName, JSON.stringify({
-      userData: data, token: jwtToken
-    }));
+    try {
+      localStorage.setItem(storageName, JSON.stringify({
+        userData: data, token: jwtToken
+      }));
+    } catch (e) {
+      if (e == 'QUOTA_EXCEEDED_ERR') {
+        alert('Quota exceeded in local storage!');
+      }
+    }
   }, []);
 
   const logout = useCallback(() => {

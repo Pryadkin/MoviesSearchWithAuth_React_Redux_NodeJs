@@ -10,16 +10,13 @@ const CardMovie = (props) => {
     overview
   } = props;
 
-  const state = useSelector(state => state.movieSearchReducer);
+  const stateMovies = useSelector(state => state.movieSearchReducer.movies);
 
   const dispatch = useDispatch();
 
   const addMovieHandler = () => {
-    dispatch(addMovie(id))
-    setTimeout(() => {
-
-      console.log(state)
-    }, 1000)
+    const targetMovie = stateMovies.find(movie => movie.id === id);
+    dispatch(addMovie(targetMovie))
   };
 
   return (

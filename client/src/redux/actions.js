@@ -12,9 +12,9 @@ export const searchMovie = (movie) => ({
   }
 });
 
-export const addMovie = (id) => ({
+export const addMovie = (movie) => ({
   type: ADD_MOVIE,
-  payload: id
+  payload: movie
 })
 
 export const cleanMovies = () => ({
