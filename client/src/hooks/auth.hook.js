@@ -1,38 +1,36 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addLoginData, removeLoginData } from '../redux/actions';
 
 const storageName = 'userData';
 
 export const useAuth = () => {
-  const [token, setToken] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.authReducer.token);
+  const userData = useSelector(state => state.authReducer.userData);
 
-  const login = useCallback((jwtToken, data) => {
-    setToken(jwtToken);
-    setUserData(data);
-
-    try {
-      localStorage.setItem(storageName, JSON.stringify({
-        userData: data, token: jwtToken
-      }));
-    } catch (e) {
-      if (e == 'QUOTA_EXCEEDED_ERR') {
-        alert('Quota exceeded in local storage!');
-      }
-    }
+  const login = useCallback((token, payload) => {
+    dispatch(addLoginData(token, payload))
   }, []);
 
-  const logout = useCallback(() => {
-    setToken(null);
-    setUserData(null);
+  const logout = () => {
+    dispatch(removeLoginData());
     localStorage.removeItem(storageName);
-  }, []);
+  }
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem(storageName));
-    if (data && data.token) {
-      login(data.token, data.userData);
+    if (token && userData) {
+      localStorage.setItem(storageName, JSON.stringify({
+        userData, token
+      }));
+    } else {
+      const data = JSON.parse(localStorage.getItem(storageName));
+      if (data && data.token) {
+        login(data.token, data.userData);
+      }
     }
+
   }, [login])
 
-  return { login, logout, token, userData }
+  return { login, logout, userData };
 }

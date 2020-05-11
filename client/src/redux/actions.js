@@ -37,6 +37,16 @@ export const fetchMovie = (nameMovie) => {
   }
 };
 
+export const addLoginData = (token, userData) => ({
+  type: 'ADD_LOGIN_DATA',
+  token,
+  userData
+})
+
+export const removeLoginData = () => ({
+  type: 'REMOVE_LOGIN_DATA'
+})
+
 
 
 
@@ -44,10 +54,10 @@ export const fetchMovie = (nameMovie) => {
 
 
 
-export const removePost = (id) => ({
-  type: "REMOVE_POST",
-  payload: id
-});
+// export const removePost = (id) => ({
+//   type: "REMOVE_POST",
+//   payload: id
+// });
 
 // export const fetchMovie = () => {
 //   return dispatch => {

@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
 import { useSelector } from 'react-redux';
-import CardMovie from '../../components/CardsMovies/CardMovie';
+import { useAuth } from '../../hooks/auth.hook';
 
 import CardsMovies from '../../components/CardsMovies/CardsMovies';
 
@@ -10,7 +9,7 @@ import './ProfilePage.scss';
 import { Button, Navbar, Nav } from 'react-bootstrap';
 
 export const ProfilePage = () => {
-  const { logout, userData } = useContext(AuthContext);
+  const { logout, userData } = useAuth();
   const [movie, getMovies] = useState([]);
   const profileMovies = useSelector(state => state.movieSearchReducer.profileMovies);
 
