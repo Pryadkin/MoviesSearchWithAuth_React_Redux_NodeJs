@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
-import { useDispatch, useSelector } from 'react-redux';
 import Registration from './Registration';
 import Login from './Login';
 import { useAuth } from '../../hooks/auth.hook';
@@ -26,7 +25,7 @@ export const AuthPage = () => {
 
   const registerHandler = async () => {
     try {
-      const data = await request('http://localhost:5000/api/auth/register', 'POST', { ...form })
+      const data = await request('http://localhost:5000/api/auth/register', 'POST', { ...form });
       message(data.message);
     } catch (err) { }
   }

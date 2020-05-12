@@ -1,4 +1,3 @@
-import uniqid from 'uniqid';
 import {
   SEARCH_MOVIE,
   CLEAN_MOVIES,
@@ -12,7 +11,7 @@ const initialState = {
   isLoading: false
 };
 
-export const movieSearchReducer = (state = initialState, action) => {
+export const movieStateReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_MOVIE:
       return {

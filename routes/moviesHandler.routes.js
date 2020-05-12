@@ -6,7 +6,7 @@ router.post('/add', async (req, res) => {
   try {
     const { email, movies } = req.body;
 
-    const movies = await Movies.findOne({ email });
+    const email = await Movies.findOne({ email });
 
     if (!movies) {
       return res.status(400).json({ message: 'Пользователь не найден' });

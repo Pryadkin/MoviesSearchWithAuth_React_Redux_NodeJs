@@ -6,8 +6,7 @@ import Loading from '../Loading';
 import './CardsMovies.scss';
 
 const CardsMovies = ({ movies }) => {
-  // const movies = useSelector(state => state.movieSearchReducer.movies);
-  let isLoading = useSelector(state => state.movieSearchReducer.isLoading);
+  let isLoading = useSelector(state => state.movieStateReducer.isLoading);
 
   return (
     <div className="search-films-container">

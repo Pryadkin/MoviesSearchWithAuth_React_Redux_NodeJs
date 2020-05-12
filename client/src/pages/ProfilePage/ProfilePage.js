@@ -11,7 +11,7 @@ import { Button, Navbar, Nav } from 'react-bootstrap';
 export const ProfilePage = () => {
   const { logout, userData } = useAuth();
   const [movie, getMovies] = useState([]);
-  const profileMovies = useSelector(state => state.movieSearchReducer.profileMovies);
+  const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
 
   const logoutHandler = (e) => {
     e.preventDefault();

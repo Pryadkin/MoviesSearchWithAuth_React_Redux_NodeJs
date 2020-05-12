@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { movieSearchReducer } from './movieSearchReducer';
+import { movieStateReducer } from './movieStateReducer';
 import { authReducer } from './authReducer';
 
 export const rootReducer = combineReducers({
   authReducer,
-  movieSearchReducer
+  movieStateReducer
 })

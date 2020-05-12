@@ -4,7 +4,7 @@ import CardsMovies from '../components/CardsMovies/CardsMovies';
 import { useSelector } from 'react-redux';
 
 const SearchFilmsPage = () => {
-  const movies = useSelector(state => state.movieSearchReducer.movies);
+  const movies = useSelector(state => state.movieStateReducer.movies);
 
   return (
     <>

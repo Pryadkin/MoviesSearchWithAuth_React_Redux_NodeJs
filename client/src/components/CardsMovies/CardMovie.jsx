@@ -10,7 +10,7 @@ const CardMovie = (props) => {
     overview
   } = props;
 
-  const stateMovies = useSelector(state => state.movieSearchReducer.movies);
+  const stateMovies = useSelector(state => state.movieStateReducer.movies);
 
   const dispatch = useDispatch();
 
