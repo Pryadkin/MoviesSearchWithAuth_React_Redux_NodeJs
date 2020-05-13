@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuth } from '../../hooks/auth.hook';
 
-import CardsMovies from '../../components/CardsMovies/CardsMovies';
+import CardsMoviesOfProfile from '../../components/CardsMovies/CardsMoviesOfProfile';
 
 import './ProfilePage.scss';
 import { Button, Navbar, Nav } from 'react-bootstrap';
@@ -20,7 +20,7 @@ export const ProfilePage = () => {
 
   useEffect(() => {
     const film = (
-      <CardsMovies movies={profileMovies} />
+      <CardsMoviesOfProfile movies={profileMovies} />
     );
     getMovies(film);
   }, [profileMovies])

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMovie } from '../../redux/actions';
 
-const CardMovie = (props) => {
+const SearchCardMovie = (props) => {
   const {
     id,
     title,
@@ -21,11 +21,11 @@ const CardMovie = (props) => {
 
   return (
     <div className="card">
-      <div className="card-body">
+      <div className="card-body card-search">
         <img src={poster} alt="" />
-        <h5 className="card-title">
+        <h3 className="card-title">
           {title}
-        </h5>
+        </h3>
         {/* <p className="card-text">
           {overview}
         </p> */}
@@ -41,4 +41,4 @@ const CardMovie = (props) => {
   )
 };
 
-export default CardMovie;
+export default SearchCardMovie;

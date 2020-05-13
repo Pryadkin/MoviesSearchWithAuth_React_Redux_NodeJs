@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchFilms from '../components/SearchFilms';
-import CardsMovies from '../components/CardsMovies/CardsMovies';
+import CardsMoviesOfSearch from '../components/CardsMovies/CardsMoviesOfSearch';
 import { useSelector } from 'react-redux';
 
 const SearchFilmsPage = () => {
@@ -9,7 +9,7 @@ const SearchFilmsPage = () => {
   return (
     <>
       <SearchFilms />
-      <CardsMovies movies={movies} />
+      <CardsMoviesOfSearch movies={movies} />
     </>
   )
 }
