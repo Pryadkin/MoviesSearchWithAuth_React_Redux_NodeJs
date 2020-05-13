@@ -10,8 +10,6 @@ const CardsMovies = ({ movies }) => {
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
   const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
 
-  // console.log(profileMovies)
-
   return (
     <div className="search-movies-container">
       {isLoading

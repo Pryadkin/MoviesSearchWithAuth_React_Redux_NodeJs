@@ -31,11 +31,11 @@ export const isLoading = () => ({
   type: IS_LOADING
 });
 
-export const fetchMovie = (nameMovie) => {
+export const fetchMovie = (nameMovie, isWithPicture) => {
   return async dispatch => {
     dispatch(cleanMovies());
     dispatch(isLoading());
-    const movies = await getMovie(nameMovie)
+    const movies = await getMovie(nameMovie, isWithPicture)
     movies.map(movie => {
       dispatch(searchMovie(movie))
     })

@@ -3,15 +3,18 @@ import { useDispatch } from 'react-redux';
 import { fetchMovie } from '../redux/actions';
 import { Link } from 'react-router-dom';
 
-import { Form, Button, Navbar, Nav } from 'react-bootstrap';
+import { Form, Button, ToggleButton, Navbar, Nav } from 'react-bootstrap';
 
 const SearchFilms = () => {
-  const [title, setTitle] = useState('big');
+  const [title, setTitle] = useState('mad max');
+  const [isWithPicture, setPicture] = useState(true);
   const dispatch = useDispatch();
   const submitHandler = e => {
     e.preventDefault();
-    dispatch(fetchMovie(title));
-    setTitle('');
+    if (title) {
+      dispatch(fetchMovie(title, isWithPicture));
+      setTitle('');
+    }
   };
 
   return (
@@ -22,6 +25,13 @@ const SearchFilms = () => {
       </Nav>
 
       <Form inline onSubmit={submitHandler}>
+        <Button
+          variant="dark"
+          onClick={() => setPicture(!isWithPicture)}
+        >
+          {isWithPicture ? "With picture" : "Without picture"}
+        </Button>
+
         <Form.Control
           type="text"
           placeholder="Search movie"
