@@ -1,6 +1,7 @@
 import { getMovie } from '../requests';
 
 export const ADD_MOVIE = "ADD_MOVIE";
+export const REMOVE_MOVIE = "REMOVE_MOVIE";
 export const SEARCH_MOVIE = "SEARCH_MOVIE";
 export const CLEAN_MOVIES = "CLEAN_MOVIES";
 export const IS_LOADING = "IS_LOADING";
@@ -15,6 +16,11 @@ export const searchMovie = (movie) => ({
 export const addMovie = (movie) => ({
   type: ADD_MOVIE,
   payload: movie
+})
+
+export const removeMovie = (id) => ({
+  type: REMOVE_MOVIE,
+  payload: id
 })
 
 export const cleanMovies = () => ({

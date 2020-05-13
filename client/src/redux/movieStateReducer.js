@@ -2,6 +2,7 @@ import {
   SEARCH_MOVIE,
   CLEAN_MOVIES,
   ADD_MOVIE,
+  REMOVE_MOVIE,
   IS_LOADING
 } from './actions';
 
@@ -30,6 +31,11 @@ export const movieStateReducer = (state = initialState, action) => {
       return {
         ...state,
         profileMovies: [...state.profileMovies, action.payload]
+      };
+    case REMOVE_MOVIE:
+      return {
+        ...state,
+        profileMovies: state.profileMovies.filter(movie => movie.id !== action.payload)
       };
     case "REMOVE_POST":
       return {

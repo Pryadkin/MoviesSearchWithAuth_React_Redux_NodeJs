@@ -31,7 +31,7 @@ const SearchCardMovie = (props) => {
         </p> */}
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary btn-add"
           onClick={addMovieHandler}
         >
           add
