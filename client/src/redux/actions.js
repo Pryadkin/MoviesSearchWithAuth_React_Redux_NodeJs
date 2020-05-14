@@ -35,7 +35,7 @@ export const fetchMovie = (nameMovie, isWithPicture) => {
   return async dispatch => {
     dispatch(cleanMovies());
     dispatch(isLoading());
-    const movies = await getMovie(nameMovie, isWithPicture)
+    const movies = await getMovie(nameMovie, isWithPicture);
     movies.map(movie => {
       dispatch(searchMovie(movie))
     })
