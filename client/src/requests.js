@@ -1,6 +1,6 @@
 import api from './utils/api';
 
-export const getMovie = async (name, page, isWithPicture) => {
+export const getMovie = async (name, isWithPicture) => {
   try {
     const response = await api.get("/", {
       params: {
