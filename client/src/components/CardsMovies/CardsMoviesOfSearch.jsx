@@ -1,10 +1,7 @@
 import React from 'react';
-import CardMovieOfSearch from './CardMovieOfSearch';
-import CardMovieOfProfile from './CardMovieOfProfile';
+import Card from '../Card';
 import { useSelector } from 'react-redux';
 import Loading from '../Loading';
-
-import './CardsMovies.scss';
 
 const CardsMovies = ({ movies }) => {
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
@@ -18,23 +15,23 @@ const CardsMovies = ({ movies }) => {
           for (let i = 0; i < profileMovies.length; i++) {
             if (movie.id === profileMovies[i].id) {
               return (
-                <CardMovieOfProfile
+                <Card
+                  mechanics='MOVIE_OF_PROFILE'
                   key={movie.id}
                   id={movie.id}
-                  title={movie.title}
                   poster={movie.poster_path}
-                  overview={movie.overview}
+                  title={movie.title}
                 />
               )
             }
           }
           return (
-            <CardMovieOfSearch
+            <Card
+              mechanics='MOVIE_OF_SEARCH'
               key={movie.id}
               id={movie.id}
-              title={movie.title}
               poster={movie.poster_path}
-              overview={movie.overview}
+              title={movie.title}
             />
           )
         })}

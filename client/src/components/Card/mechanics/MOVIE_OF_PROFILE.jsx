@@ -1,14 +1,10 @@
 import React from 'react';
+
 import { useDispatch } from 'react-redux';
-import { removeMovie } from '../../redux/actions';
+import { removeMovie } from '../../../redux/actions';
+import CardImage from '../CardImage';
 
-const CardMovieOfProfile = (props) => {
-  const {
-    id,
-    title,
-    poster
-  } = props;
-
+const CardMovieOfProfile = ({ poster, title, id }) => {
   const dispatch = useDispatch();
 
   const removeMovieHandler = () => {
@@ -18,10 +14,14 @@ const CardMovieOfProfile = (props) => {
   return (
     <div className="card">
       <div className="card-body card-profile">
-        <img src={poster} alt="" />
-        <h5 className="card-title">
+        <CardImage
+          poster={poster}
+          title={title}
+        />
+
+        <h3 className="card-title">
           {title}
-        </h5>
+        </h3>
 
         <button
           type="button"
@@ -29,7 +29,7 @@ const CardMovieOfProfile = (props) => {
           onClick={removeMovieHandler}
         >
           remove
-        </button>
+      </button>
       </div>
     </div>
   )
