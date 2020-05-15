@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMovie } from '../../../redux/actions';
 import CardImage from '../CardImage';
+import CardTitle from '../CardTitle';
 
 const CardMovieOfSearch = ({ poster, title, id }) => {
   const stateMovies = useSelector(state => state.movieStateReducer.movies);
@@ -21,9 +22,7 @@ const CardMovieOfSearch = ({ poster, title, id }) => {
           title={title}
         />
 
-        <h3 className="card-title">
-          {title}
-        </h3>
+        <CardTitle title={title} />
 
         <button
           type="button"
