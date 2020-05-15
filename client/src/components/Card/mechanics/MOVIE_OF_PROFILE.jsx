@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { removeMovie } from '../../../redux/actions';
 import CardImage from '../CardImage';
+import CardTitle from '../CardTitle';
 
 const CardMovieOfProfile = ({ poster, title, id }) => {
   const dispatch = useDispatch();
@@ -19,9 +20,7 @@ const CardMovieOfProfile = ({ poster, title, id }) => {
           title={title}
         />
 
-        <h3 className="card-title">
-          {title}
-        </h3>
+        <CardTitle title={title} />
 
         <button
           type="button"
