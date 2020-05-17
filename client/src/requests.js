@@ -1,21 +1,35 @@
 import api from './utils/api';
 
-export const getMovie = async (name, isWithPicture) => {
+// export const getMovies = async (name, isWithPicture) => {
+// let movies = [];
+// let maxPages = 2;
+// for (let i = 1; i <= maxPages; i++) {
+// const movie = await requestMovies(name, isWithPicture, 1);
+// const { moviesWithFullPathForPosters, total_pages } = movie;
+// maxPages = total_pages;
+// movies = [...moviesWithFullPathForPosters, ...movies];
+// }
+// return movies;
+// }
+
+export const requestMovies = async (name, isWithPicture, page) => {
   try {
     const response = await api.get("/", {
       params: {
         api_key: 'b72f01423c617f99db15bb46a8285ccb',
         query: name,
-        page: 1,
+        page: page,
         include_adult: false
       }
     })
     const data = response.data;
+    const total_pages = data.total_pages;
     let dataMovies = data.results;
 
-    // if (dataMovies.length === 0) {
-    //   alert('Movies not found')
-    // }
+    // message if movies not found
+    if (dataMovies.length === 0 && page === 1) {
+      alert('Movies not found')
+    }
 
     if (isWithPicture) {
       dataMovies = dataMovies.filter(movie => {
@@ -28,8 +42,7 @@ export const getMovie = async (name, isWithPicture) => {
       item.backdrop_path = `https://image.tmdb.org/t/p/w300${item.backdrop_path}`;
       return item;
     });
-
-    return moviesWithFullPathForPosters;
+    return { moviesWithFullPathForPosters, total_pages };
 
   } catch (err) {
     console.log(`😱 Axios request failed: ${err}`);

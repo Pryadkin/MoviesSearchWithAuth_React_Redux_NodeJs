@@ -11,12 +11,19 @@ export const useRoutes = isAuthenticated => {
         <Route path="/profile" exact>
           <ProfilePage />
         </Route>
+
         <Route path="/search" exact>
           <SearchFilmsPage />
         </Route>
+
+        <Route path="/search/:movie/:page" exact>
+          <SearchFilmsPage />
+        </Route>
+
         <Route path="/logout" exact>
           <AuthPage />
         </Route>
+
         <Redirect to="/search" />
       </Switch>
     )

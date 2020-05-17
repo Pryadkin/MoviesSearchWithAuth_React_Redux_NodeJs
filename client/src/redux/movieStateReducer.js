@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   movies: [],
+  total_search_pages: null,
   profileMovies: [],
   isLoading: false
 };
@@ -20,7 +21,8 @@ export const movieStateReducer = (state = initialState, action) => {
         movies: [
           action.payload.movie,
           ...state.movies
-        ]
+        ],
+        total_search_pages: action.payload.total_pages
       };
     case CLEAN_MOVIES:
       return {

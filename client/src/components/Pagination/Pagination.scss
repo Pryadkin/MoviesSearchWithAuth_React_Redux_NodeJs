@@ -1,0 +1,48 @@
+.pagination {
+  display: block;
+  margin: 20px 0;
+  justify-content: center;
+
+  &__double-arrow-left img{
+    cursor: pointer;
+    width: 20px;
+    height: 100%;
+  }
+
+  &__double-arrow-right img{
+    cursor: pointer;
+    width: 20px;
+    height: 100%;
+    transform: rotate(180deg);
+  }
+
+  .btn-primary {
+    outline: none !important;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    outline: none;
+
+    &:hover {
+      background-color: grey;
+      color: white;
+    }
+
+    &:focus {
+      background-color: grey !important;
+    }
+  }
+
+  .currentBtn {
+    background-color: grey;
+    color: white;
+    // &:hover {
+
+    // }
+    &:active {
+      background-color: red !important;
+    }
+    
+  }
+}
+
