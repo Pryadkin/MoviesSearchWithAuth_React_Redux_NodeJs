@@ -5,20 +5,25 @@ import doubleArrowIcon from '../../img/icons/double-arrow.svg';
 import { Button } from 'react-bootstrap';
 import './Pagination.scss';
 
-const Pagination = ({ amountVisibleBtns = 3, totalPages }) => {
+const Pagination = ({ totalPages }) => {
+  const amountVisibleBtns = 3;
   const history = useHistory();
   const { movie } = useParams();
   const [currentBtn, getCurrentBtn] = useState(1);
   const [firstVisibleBtn, getFirstVisibleBtn] = useState(1);
 
-  if (amountVisibleBtns < 3) {
-    amountVisibleBtns = 3;
-  }
-
   const amountBtn = amountVisibleBtns > totalPages ? totalPages : amountVisibleBtns;
   const [lestVisibleBtn, getLestVisibleBtn] = useState(null);
   const centerVisibleBtn = Math.floor(amountVisibleBtns / 2) + firstVisibleBtn;
   const arrowBtn = new Array(amountBtn).fill(null);
+
+  const doubleArrowLeftClass = `pagination__double-arrow-left ${
+    firstVisibleBtn !== 1 ? "" : "hidden"
+    }`;
+
+  const doubleArrowRightClass = `pagination__double-arrow-right ${
+    (firstVisibleBtn + amountBtn - 1) !== totalPages ? "" : "hidden"
+    }`;
 
   useEffect(() => {
     history.push(`/search/${movie}/${currentBtn}`);
@@ -60,7 +65,7 @@ const Pagination = ({ amountVisibleBtns = 3, totalPages }) => {
 
   return (
     <div className="pagination">
-      <div className="pagination__double-arrow-left">
+      <div className={doubleArrowLeftClass}>
         <img
           src={doubleArrowIcon}
           alt="double arrow left"
@@ -83,7 +88,7 @@ const Pagination = ({ amountVisibleBtns = 3, totalPages }) => {
       }
       )}
 
-      <div className="pagination__double-arrow-right">
+      <div className={doubleArrowRightClass}>
         <img
           src={doubleArrowIcon}
           alt="double arrow right"

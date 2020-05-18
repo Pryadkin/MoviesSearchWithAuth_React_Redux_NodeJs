@@ -5,3 +5,7 @@ body {
 .btn {
   margin: 0 10px;
 }
+
+.hidden {
+  opacity: 0;
+}
