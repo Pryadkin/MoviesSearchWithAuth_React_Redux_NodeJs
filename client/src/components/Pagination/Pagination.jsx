@@ -5,7 +5,7 @@ import doubleArrowIcon from '../../img/icons/double-arrow.svg';
 import { Button } from 'react-bootstrap';
 import './Pagination.scss';
 
-const Pagination = ({ amountVisibleBtns = 6, totalPages }) => {
+const Pagination = ({ amountVisibleBtns = 3, totalPages }) => {
   const history = useHistory();
   const { movie } = useParams();
   const [currentBtn, getCurrentBtn] = useState(1);
@@ -41,7 +41,7 @@ const Pagination = ({ amountVisibleBtns = 6, totalPages }) => {
     }
 
     if (lestVisibleBtn >= totalPages) {
-      console.log(centerVisibleBtn)
+      // console.log(centerVisibleBtn)
       if (currentBtn > centerVisibleBtn) {
         getFirstVisibleBtn(lestVisibleBtn - amountBtn + 1)
       }

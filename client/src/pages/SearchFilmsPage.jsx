@@ -9,7 +9,6 @@ import Pagination from '../components/Pagination/Pagination';
 const SearchFilmsPage = () => {
   const dispatch = useDispatch();
   const movies = useSelector(state => state.movieStateReducer.movies);
-  const total_pages = useSelector(state => state.movieStateReducer.total_search_pages);
   const { movie, page } = useParams();
 
   useEffect(() => {
@@ -28,7 +27,6 @@ const SearchFilmsPage = () => {
     return (
       <>
         <SearchFilms />
-        <Pagination totalPages={total_pages} />
         <CardsMoviesOfSearch movies={movies} />
       </>
     )

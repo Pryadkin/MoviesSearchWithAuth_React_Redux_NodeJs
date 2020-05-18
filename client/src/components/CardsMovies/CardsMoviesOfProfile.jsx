@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card';
 import { useSelector } from 'react-redux';
-import Loading from '../Loading';
+import MyLoader from '../MyLoader';
 
 const CardsMovies = ({ movies }) => {
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
@@ -9,9 +9,8 @@ const CardsMovies = ({ movies }) => {
   return (
     <div className="profile-movies-container">
       {isLoading
-        ? <Loading />
+        ? <MyLoader />
         : movies.map(movie => {
-          console.log(movie)
           return (
             <Card
               mechanics='MOVIE_OF_PROFILE'
