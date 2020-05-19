@@ -27,8 +27,15 @@ const Pagination = ({ totalPages }) => {
 
   useEffect(() => {
     history.push(`/search/${movie}/${currentBtn}`);
+
+
     paginationOffset();
   }, [currentBtn])
+
+  // useEffect(() => {
+  //   getFirstVisibleBtn(1);
+  //   // getCurrentBtn(1);
+  // }, [movie])
 
   const paginationOffset = () => {
     const next = currentBtn - centerVisibleBtn;
@@ -46,7 +53,6 @@ const Pagination = ({ totalPages }) => {
     }
 
     if (lestVisibleBtn >= totalPages) {
-      // console.log(centerVisibleBtn)
       if (currentBtn > centerVisibleBtn) {
         getFirstVisibleBtn(lestVisibleBtn - amountBtn + 1)
       }

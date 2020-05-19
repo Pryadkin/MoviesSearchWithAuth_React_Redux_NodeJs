@@ -1,24 +1,18 @@
-import api from './utils/api';
+import axios from "axios";
 
-// export const getMovies = async (name, isWithPicture) => {
-// let movies = [];
-// let maxPages = 2;
-// for (let i = 1; i <= maxPages; i++) {
-// const movie = await requestMovies(name, isWithPicture, 1);
-// const { moviesWithFullPathForPosters, total_pages } = movie;
-// maxPages = total_pages;
-// movies = [...moviesWithFullPathForPosters, ...movies];
-// }
-// return movies;
-// }
+const api = axios.create({
+  baseURL: "https://api.themoviedb.org/3",
+  responseType: "json"
+});
 
 export const requestMovies = async (name, isWithPicture, page) => {
   try {
-    const response = await api.get("/", {
+    const response = await api.get("/search/movie", {
       params: {
         api_key: 'b72f01423c617f99db15bb46a8285ccb',
         query: name,
         page: page,
+        language: 'en-US',
         include_adult: false
       }
     })

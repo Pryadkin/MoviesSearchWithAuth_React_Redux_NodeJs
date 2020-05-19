@@ -36,15 +36,11 @@ export const fetchMovie = (nameMovie, isWithPicture, page) => {
   return async dispatch => {
     dispatch(cleanMovies());
     dispatch(isLoading());
-
     const {
       moviesWithFullPathForPosters,
       total_pages
-    } = await requestMovies(nameMovie, isWithPicture, page);
-
-    moviesWithFullPathForPosters.map(movie => {
-      dispatch(searchMovie(movie, total_pages))
-    })
+    } = await requestMovies(nameMovie, true, page);
+    dispatch(searchMovie(moviesWithFullPathForPosters, total_pages))
     dispatch(isLoading());
   }
 };

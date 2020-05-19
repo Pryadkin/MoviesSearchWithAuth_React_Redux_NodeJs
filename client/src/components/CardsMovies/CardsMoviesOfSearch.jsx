@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import MyLoader from '../MyLoader';
 import Pagination from '../Pagination/Pagination';
 
-
 const CardsMovies = ({ movies }) => {
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
   const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
@@ -41,9 +40,7 @@ const CardsMovies = ({ movies }) => {
     <>
       <Pagination totalPages={total_pages} />
       <div className="search-movies-container">
-
         {
-          // <MyLoader />
           isLoading
             ? <MyLoader />
             : card()

@@ -4,7 +4,6 @@ import CardsMoviesOfSearch from '../components/CardsMovies/CardsMoviesOfSearch';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovie } from '../redux/actions';
 import { useParams } from 'react-router-dom';
-import Pagination from '../components/Pagination/Pagination';
 
 const SearchFilmsPage = () => {
   const dispatch = useDispatch();

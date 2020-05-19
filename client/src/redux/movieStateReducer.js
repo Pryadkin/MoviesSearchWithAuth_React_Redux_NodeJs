@@ -18,10 +18,7 @@ export const movieStateReducer = (state = initialState, action) => {
     case SEARCH_MOVIE:
       return {
         ...state,
-        movies: [
-          action.payload.movie,
-          ...state.movies
-        ],
+        movies: action.payload.movie,
         total_search_pages: action.payload.total_pages
       };
     case CLEAN_MOVIES:
