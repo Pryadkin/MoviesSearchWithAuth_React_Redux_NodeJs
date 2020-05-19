@@ -38,7 +38,10 @@ const CardsMovies = ({ movies }) => {
 
   return (
     <>
-      <Pagination totalPages={total_pages} />
+      <Pagination
+        amountBtns={3}
+        totalPages={total_pages}
+      />
       <div className="search-movies-container">
         {
           isLoading

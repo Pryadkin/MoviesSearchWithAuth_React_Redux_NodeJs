@@ -5,68 +5,57 @@ import doubleArrowIcon from '../../img/icons/double-arrow.svg';
 import { Button } from 'react-bootstrap';
 import './Pagination.scss';
 
-const Pagination = ({ totalPages }) => {
-  const amountVisibleBtns = 3;
+const Pagination = ({ amountBtns = 10, totalPages }) => {
   const history = useHistory();
   const { movie } = useParams();
-  const [currentBtn, getCurrentBtn] = useState(1);
-  const [firstVisibleBtn, getFirstVisibleBtn] = useState(1);
+  const [currentBtn, setCurrentBtn] = useState(1);
+  const [firstBtn, setFirstBtn] = useState(1);
 
-  const amountBtn = amountVisibleBtns > totalPages ? totalPages : amountVisibleBtns;
-  const [lestVisibleBtn, getLestVisibleBtn] = useState(null);
-  const centerVisibleBtn = Math.floor(amountVisibleBtns / 2) + firstVisibleBtn;
-  const arrowBtn = new Array(amountBtn).fill(null);
+  const finalAmountBtns = amountBtns > totalPages ? totalPages : amountBtns;
+  const centerBtn = Math.floor(amountBtns / 2) + firstBtn;
+  const beginBtn = 1;
+  const endBtn = totalPages - finalAmountBtns + 1;
+
+  const arrowBtn = new Array(finalAmountBtns).fill(null);
 
   const doubleArrowLeftClass = `pagination__double-arrow-left ${
-    firstVisibleBtn !== 1 ? "" : "hidden"
+    firstBtn !== 1 ? "" : "hidden"
     }`;
 
   const doubleArrowRightClass = `pagination__double-arrow-right ${
-    (firstVisibleBtn + amountBtn - 1) !== totalPages ? "" : "hidden"
+    (firstBtn + finalAmountBtns - 1) !== totalPages ? "" : "hidden"
     }`;
 
   useEffect(() => {
     history.push(`/search/${movie}/${currentBtn}`);
-
-
     paginationOffset();
-  }, [currentBtn])
+  }, [currentBtn]);
 
-  // useEffect(() => {
-  //   getFirstVisibleBtn(1);
-  //   // getCurrentBtn(1);
-  // }, [movie])
+  useEffect(() => {
+    setCurrentBtn(1);
+  }, [movie]);
 
   const paginationOffset = () => {
-    const next = currentBtn - centerVisibleBtn;
+    const offset = currentBtn - centerBtn;
+    const firstBtnOffset = firstBtn + offset;
 
-    if ((firstVisibleBtn + next) < 1) {
-      getFirstVisibleBtn(1);
-      getLestVisibleBtn(amountBtn);
-    } else {
-      getFirstVisibleBtn(firstVisibleBtn + next);
-      getLestVisibleBtn(firstVisibleBtn + amountBtn - 1);
+
+    if (offset < 0) {
+      setFirstBtn(Math.max(firstBtnOffset, beginBtn))
     }
-
-    if (currentBtn === totalPages) {
-      getFirstVisibleBtn(totalPages - amountBtn + 1)
-    }
-
-    if (lestVisibleBtn >= totalPages) {
-      if (currentBtn > centerVisibleBtn) {
-        getFirstVisibleBtn(lestVisibleBtn - amountBtn + 1)
-      }
+    if (offset > 0) {
+      setFirstBtn(Math.min(firstBtnOffset, endBtn))
     }
   };
 
   const arrowLeftOnClickHandler = () => {
-    getFirstVisibleBtn(1);
-    getCurrentBtn(1);
+    setFirstBtn(beginBtn);
+    setCurrentBtn(beginBtn);
   };
 
   const arrowRightOnClickHandler = () => {
-    getFirstVisibleBtn(totalPages - amountBtn + 1);
-    getCurrentBtn(totalPages);
+    setFirstBtn(endBtn);
+    setCurrentBtn(totalPages);
   };
 
   return (
@@ -80,12 +69,12 @@ const Pagination = ({ totalPages }) => {
       </div>
 
       {arrowBtn.map((item, index) => {
-        const titleBtn = index + firstVisibleBtn;
+        const titleBtn = index + firstBtn;
         return (
           <Button
             key={index}
             variant="primary"
-            onClick={() => getCurrentBtn(titleBtn)}
+            onClick={() => setCurrentBtn(titleBtn)}
             className={titleBtn === currentBtn ? "currentBtn" : null}
           >
             {titleBtn}

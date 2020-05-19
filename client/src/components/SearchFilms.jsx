@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchMovie } from '../redux/actions';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Form, Button, Navbar, Nav } from 'react-bootstrap';
 
 const SearchFilms = () => {
-  const [title, setTitle] = useState('matrix');
+  const [title, setTitle] = useState('big');
   const [isWithPicture, setPicture] = useState(true);
-  const dispatch = useDispatch();
   const history = useHistory();
-  // const { movie } = useParams();
 
   const submitHandler = e => {
     e.preventDefault();
