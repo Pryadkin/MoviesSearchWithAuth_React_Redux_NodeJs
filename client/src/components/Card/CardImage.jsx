@@ -17,7 +17,7 @@ const CardImage = ({ poster, title, href = '#' }) => {
     <>
       {
         // catch path with "w300null": https://image.tmdb.org/t/p/w300null
-        poster.indexOf('null') === -1
+        !poster.includes('null')
           ?
           <div className="card-image">
             <ImageLink>

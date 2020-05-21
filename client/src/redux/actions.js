@@ -39,7 +39,7 @@ export const fetchMovie = (nameMovie, isWithPicture, page) => {
     const {
       moviesWithFullPathForPosters,
       total_pages
-    } = await requestMovies(nameMovie, true, page);
+    } = await requestMovies(nameMovie, isWithPicture, page);
     dispatch(searchMovie(moviesWithFullPathForPosters, total_pages))
     dispatch(isLoading());
   }

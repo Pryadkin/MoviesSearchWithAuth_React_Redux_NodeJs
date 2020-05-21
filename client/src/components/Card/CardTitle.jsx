@@ -3,7 +3,7 @@ import React from 'react';
 const CardTitle = ({ title }) => {
   const maxCountLetters = 55;
 
-  const trimTitle = () => {
+  const TrimTitle = () => {
     if (title.length > maxCountLetters) {
       let shortTitle = title.slice(0, maxCountLetters);
       if (shortTitle[shortTitle.length - 1] === ' ') {
@@ -19,7 +19,7 @@ const CardTitle = ({ title }) => {
       className="card-title"
       title={title}
     >
-      {trimTitle()}
+      {<TrimTitle />}
     </h3>
   )
 };
