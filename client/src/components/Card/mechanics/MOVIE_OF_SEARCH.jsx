@@ -1,5 +1,8 @@
 import React from 'react';
 
+import styles from '../index.module.scss';
+import cx from 'classnames';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addMovie } from '../../../redux/actions';
 import CardImage from '../CardImage';
@@ -15,8 +18,8 @@ const CardMovieOfSearch = ({ poster, title, id }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-body card-search">
+    <div className={styles.card}>
+      <div className={styles.body}>
         <CardImage
           poster={poster}
           title={title}
@@ -26,7 +29,7 @@ const CardMovieOfSearch = ({ poster, title, id }) => {
 
         <button
           type="button"
-          className="btn btn-primary btn-add"
+          className={cx(styles.btn, styles.btn_add)}
           onClick={addMovieHandler}
         >
           add

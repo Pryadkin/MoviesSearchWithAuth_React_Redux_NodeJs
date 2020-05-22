@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuth } from '../../hooks/auth.hook';
-
 import CardsMoviesOfProfile from '../../components/CardsMovies/CardsMoviesOfProfile';
 
-import './ProfilePage.scss';
-import { Button, Navbar, Nav } from 'react-bootstrap';
+import styles from "./ProfilePage.module.scss";
 
 export const ProfilePage = () => {
   const { logout, userData } = useAuth();
@@ -27,18 +25,27 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        {userData ?
-          <Navbar.Brand href="#home">{userData.userName}</Navbar.Brand>
-          : null
-        }
-        <Nav className="mr-auto">
-          <Link className="search-link" to="/search">Search</Link>
-        </Nav>
-        <Button href="/" onClick={logoutHandler}>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="d-flex flex-row bd-highlight">
+          {
+            userData
+              ? <div className="navbar-brand">{userData.userName}</div>
+              : null
+          }
+
+          <div className="d-flex align-content-center flex-wrap">
+            <Link className={styles.search_link} to="/search">Search</Link>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="btn btn-outline-light"
+          onClick={logoutHandler}
+        >
           Log out
-        </Button>
-      </Navbar>
+        </button>
+      </nav>
       {movie}
     </>
   )

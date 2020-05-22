@@ -4,8 +4,8 @@ import { useRoutes } from './routes';
 import { useSelector } from 'react-redux';
 import { useHttp } from './hooks/http.hook';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 
 function App() {
   const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);

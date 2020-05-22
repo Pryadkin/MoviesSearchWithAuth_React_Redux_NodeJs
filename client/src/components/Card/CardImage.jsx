@@ -1,6 +1,9 @@
 import React from 'react';
 import nophoto from '../../img/nophoto.png';
 
+import cx from 'classnames';
+import styles from './index.module.scss';
+
 const CardImage = ({ poster, title, href = '#' }) => {
   const ImageLink = props => (
     <a
@@ -19,13 +22,13 @@ const CardImage = ({ poster, title, href = '#' }) => {
         // catch path with "w300null": https://image.tmdb.org/t/p/w300null
         !poster.includes('null')
           ?
-          <div className="card-image">
+          <div className={styles.image}>
             <ImageLink>
               <img src={poster} alt={title} />
             </ImageLink>
           </div>
           :
-          <div className="card-image nophoto">
+          <div className={cx(styles.image, styles.nophoto)}>
             <ImageLink>
               <img src={nophoto} alt={title} />
             </ImageLink>
