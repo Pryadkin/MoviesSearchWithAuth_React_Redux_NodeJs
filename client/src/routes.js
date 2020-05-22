@@ -24,7 +24,7 @@ export const useRoutes = isAuthenticated => {
           <AuthPage />
         </Route>
 
-        <Redirect to="/search" />
+        <Redirect to="/profile" />
       </Switch>
     )
   }

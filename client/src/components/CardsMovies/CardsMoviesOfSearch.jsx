@@ -39,7 +39,7 @@ const CardsMovies = ({ movies }) => {
   return (
     <>
       <Pagination
-        amountBtns={3}
+        amountBtns={5}
         totalPages={total_pages}
       />
       <div className="search-movies-container">

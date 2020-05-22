@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Form, Button, Navbar, Nav } from 'react-bootstrap';
 
 const SearchFilms = () => {
-  const [title, setTitle] = useState('big');
+  const [title, setTitle] = useState('');
   const [isWithPicture, setPicture] = useState(true);
   const history = useHistory();
 

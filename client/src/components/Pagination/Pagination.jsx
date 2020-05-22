@@ -39,7 +39,6 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
     const offset = currentBtn - centerBtn;
     const firstBtnOffset = firstBtn + offset;
 
-
     if (offset < 0) {
       setFirstBtn(Math.max(firstBtnOffset, beginBtn))
     }
@@ -60,35 +59,37 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
 
   return (
     <div className="pagination">
-      <div className={doubleArrowLeftClass}>
-        <img
-          src={doubleArrowIcon}
-          alt="double arrow left"
-          onClick={arrowLeftOnClickHandler}
-        />
-      </div>
+      <div className="pagination__container">
+        <div className={doubleArrowLeftClass}>
+          <img
+            src={doubleArrowIcon}
+            alt="double arrow left"
+            onClick={arrowLeftOnClickHandler}
+          />
+        </div>
 
-      {arrowBtn.map((item, index) => {
-        const titleBtn = index + firstBtn;
-        return (
-          <Button
-            key={index}
-            variant="primary"
-            onClick={() => setCurrentBtn(titleBtn)}
-            className={titleBtn === currentBtn ? "currentBtn" : null}
-          >
-            {titleBtn}
-          </Button>
-        )
-      }
-      )}
+        {arrowBtn.map((item, index) => {
+          const titleBtn = index + firstBtn;
+          return (
+            <Button
+              key={index}
+              variant="primary"
+              onClick={() => setCurrentBtn(titleBtn)}
+              className={titleBtn === currentBtn ? "currentBtn" : null}
+            >
+              {titleBtn}
+            </Button>
+          )
+        }
+        )}
 
-      <div className={doubleArrowRightClass}>
-        <img
-          src={doubleArrowIcon}
-          alt="double arrow right"
-          onClick={arrowRightOnClickHandler}
-        />
+        <div className={doubleArrowRightClass}>
+          <img
+            src={doubleArrowIcon}
+            alt="double arrow right"
+            onClick={arrowRightOnClickHandler}
+          />
+        </div>
       </div>
     </div>
   )

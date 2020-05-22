@@ -1,21 +1,38 @@
 .pagination {
-  display: block;
+  display: flex;
   margin: 20px 0;
   justify-content: center;
 
-  &__double-arrow-left img{
-    cursor: pointer;
-    width: 20px;
-    height: 100%;
+  &__container {
+    display: flex;
+    position: relative;
   }
 
-  &__double-arrow-right img{
-    cursor: pointer;
-    width: 20px;
-    height: 100%;
-    transform: rotate(180deg);
+  &__double-arrow-left, 
+  &__double-arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-55%);
+
+    img {
+      cursor: pointer;
+      width: 20px;
+      height: 100%;
+    }
   }
 
+  &__double-arrow-left {
+    left: -20px; 
+  }
+
+  &__double-arrow-right {
+    right: -20px;
+
+    img {
+      transform: rotate(180deg);
+    }
+  }
+  
   .btn-primary {
     outline: none !important;
     background-color: white;
@@ -40,6 +57,10 @@
     &:active {
       background-color: red !important;
     }    
+  }
+
+  .hidden {
+    display: none;     
   }
 }
 
