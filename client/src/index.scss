@@ -1,0 +1,77 @@
+$spacer: 0.625rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 2),
+    6: ($spacer * 3),
+    7: ($spacer * 4),
+    8: ($spacer * 6),
+    9: ($spacer * 8),
+  ),
+  $spacers
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 380px,
+  md: 720px,
+  lg: 1100px,
+  xl: 1200px,
+);
+
+$container-max-widths: (
+  xs: 326px,
+  md: 702px,
+  lg: 1050px,
+);
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/transitions';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/breadcrumb';
+@import '~bootstrap/scss/toasts';
+@import '~bootstrap/scss/close';
+
+body {
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.container {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+// .row {
+//   margin-left: -12px;
+//   margin-right: -12px;
+// }
+// .row > [class^="col-"],
+// .row > [class*=" col-"] {
+//   padding-left: 12px !important;
+//   padding-right: 12px !important;
+// }
+
+// .form-row {
+//   margin-right: -10px;
+//   margin-left: -10px;
+// }
+// .form-row > [class^="col-"],
+// .form-row > [class*=" col-"] {
+//   padding-left: 10px !important;
+//   padding-right: 10px !important;
+// }

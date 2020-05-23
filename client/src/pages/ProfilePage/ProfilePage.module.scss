@@ -1,0 +1,9 @@
+.search_link,
+.profile_link {
+  color: white;
+
+  &:hover {
+    text-decoration: none;
+    color: lightgrey;
+  }
+}

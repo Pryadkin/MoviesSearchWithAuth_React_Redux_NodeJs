@@ -9,7 +9,7 @@ const CardsMovies = ({ movies }) => {
   const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
   const total_pages = useSelector(state => state.movieStateReducer.total_search_pages);
 
-  const card = () => {
+  const Cards = () => {
     return movies.map(movie => {
       for (let i = 0; i < profileMovies.length; i++) {
         if (movie.id === profileMovies[i].id) {
@@ -42,11 +42,11 @@ const CardsMovies = ({ movies }) => {
         amountBtns={5}
         totalPages={total_pages}
       />
-      <div className="search-movies-container">
+      <div className="container-fluid d-flex flex-wrap search-movies-container justify-content-center">
         {
           isLoading
             ? <MyLoader />
-            : card()
+            : <Cards />
         }
       </div>
     </>

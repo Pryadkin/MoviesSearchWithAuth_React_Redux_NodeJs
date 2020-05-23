@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { Form, Button, Navbar, Nav } from 'react-bootstrap';
+import styles from './SearchFilms.module.scss';
 
 const SearchFilms = () => {
   const [title, setTitle] = useState('');
@@ -17,35 +17,74 @@ const SearchFilms = () => {
   };
 
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand>Search movie</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Link className="profile-link" to="/profile">Home</Link>
-      </Nav>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="d-flex flex-row bd-highlight">
+        <div className="navbar-brand">Search movie</div>
 
-      <Form inline onSubmit={submitHandler}>
-        <Button
-          variant="dark"
-          onClick={() => setPicture(!isWithPicture)}
+        <div className="d-flex align-content-center flex-wrap">
+          <Link className={styles.home_link} to="/profile">Home</Link>
+        </div>
+      </div>
+
+      <div className="d-flex flex-row-reverse bd-highlight">
+        <form
+          className="form-inline my-2 my-lg-0"
+          onSubmit={submitHandler}
         >
-          {isWithPicture ? "With picture" : "Without picture"}
-        </Button>
+          <input
+            className="form-control mr-sm-3"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
+          <button
+            type="button"
+            className="btn btn-outline-light"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
 
-        <Form.Control
-          type="text"
-          placeholder="Search movie"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
 
-        <Button
-          variant="primary"
-          type="submit"
-        >
-          Submit
-        </Button>
-      </Form>
-    </Navbar>
+
+
+
+
+    // <Navbar bg="dark" variant="dark">
+    //   <Navbar.Brand>Search movie</Navbar.Brand>
+    //   <Nav className="mr-auto">
+    //     <Link className="profile-link" to="/profile">Home</Link>
+    //   </Nav>
+
+    //   <Form inline onSubmit={submitHandler}>
+    //     <Button
+    //       variant="dark"
+    //       onClick={() => setPicture(!isWithPicture)}
+    //     >
+    //       {isWithPicture ? "With picture" : "Without picture"}
+    //     </Button>
+
+
+
+    //     <Form.Control
+    //       type="text"
+    //       placeholder="Search movie"
+    //       value={title}
+    //       onChange={e => setTitle(e.target.value)}
+    //     />
+
+    //     <Button
+    //       variant="primary"
+    //       type="submit"
+    //     >
+    //       Submit
+    //     </Button>
+    //   </Form>
+    // </Navbar>
   )
 };
 

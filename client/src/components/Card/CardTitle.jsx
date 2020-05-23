@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './index.module.scss';
+
 const CardTitle = ({ title }) => {
   const maxCountLetters = 55;
 
@@ -16,7 +18,7 @@ const CardTitle = ({ title }) => {
 
   return (
     <h3
-      className="card-title"
+      className={styles.title}
       title={title}
     >
       {<TrimTitle />}

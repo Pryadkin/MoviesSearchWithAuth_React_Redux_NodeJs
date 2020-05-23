@@ -2,8 +2,6 @@
 import CardMovieOfSearch from './mechanics/MOVIE_OF_SEARCH';
 import CardMovieOfProfile from './mechanics/MOVIE_OF_PROFILE';
 
-import './index.scss';
-
 //  Object with mechanic customizations
 //  func - функция, отрисовывающая данную механику
 const mechanicsListSingle = {
