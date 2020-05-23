@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPicture } from '../../redux/actions';
 
 import styles from './SearchFilms.module.scss';
+import cx from 'classnames';
 
 const SearchFilms = () => {
+  const isWithPicture = useSelector(state => state.movieStateReducer.isWithPicture);
   const [title, setTitle] = useState('');
-  const [isWithPicture, setPicture] = useState(true);
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const setPictureHandler = () => {
+    dispatch(setPicture());
+  }
 
   const submitHandler = e => {
     e.preventDefault();
@@ -46,6 +54,12 @@ const SearchFilms = () => {
             Search
           </button>
         </form>
+
+        <div className={cx(styles.only_picture, (isWithPicture ? styles.gold : null), "d-flex align-content-center flex-wrap mr-5")}
+          onClick={setPictureHandler}
+        >
+          only with picture
+        </div>
       </div>
     </nav>
 

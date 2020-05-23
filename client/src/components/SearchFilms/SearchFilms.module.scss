@@ -1,0 +1,18 @@
+.home_link {
+  color: white;
+
+  &:hover {
+    text-decoration: none;
+    color: lightgrey;
+  }
+}
+
+.only_picture {
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+}
+
+.gold {
+  color: gold !important;
+}

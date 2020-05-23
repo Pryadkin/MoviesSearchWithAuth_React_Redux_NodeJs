@@ -3,14 +3,16 @@ import {
   CLEAN_MOVIES,
   ADD_MOVIE,
   REMOVE_MOVIE,
-  IS_LOADING
+  IS_LOADING,
+  IS_WITH_PICTURE
 } from './actions';
 
 const initialState = {
   movies: [],
   total_search_pages: null,
   profileMovies: [],
-  isLoading: false
+  isLoading: false,
+  isWithPicture: false,
 };
 
 export const movieStateReducer = (state = initialState, action) => {
@@ -46,7 +48,12 @@ export const movieStateReducer = (state = initialState, action) => {
         ...state,
         isLoading: state.isLoading ? false : true
       };
-    default: return state
+    case IS_WITH_PICTURE:
+      return {
+        ...state,
+        isWithPicture: !state.isWithPicture
+      };
+    default: return state;
   }
 };
 
