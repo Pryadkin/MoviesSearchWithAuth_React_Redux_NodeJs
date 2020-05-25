@@ -25,7 +25,7 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between">
         <div className="d-flex flex-row bd-highlight">
           {
             userData

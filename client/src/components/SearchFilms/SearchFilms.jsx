@@ -25,7 +25,7 @@ const SearchFilms = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
       <div className="d-flex flex-row bd-highlight">
         <div className="navbar-brand">Search movie</div>
 

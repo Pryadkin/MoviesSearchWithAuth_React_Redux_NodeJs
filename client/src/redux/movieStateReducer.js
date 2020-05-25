@@ -14,7 +14,7 @@ const initialState = {
   total_search_pages: null,
   profileMovies: null,
   isLoading: false,
-  isWithPicture: false,
+  isWithPicture: true,
 };
 
 export const movieStateReducer = (state = initialState, action) => {
