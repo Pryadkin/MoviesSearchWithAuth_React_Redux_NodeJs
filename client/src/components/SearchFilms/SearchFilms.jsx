@@ -27,7 +27,7 @@ const SearchFilms = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
       <div className="d-flex flex-row bd-highlight">
-        <div className="navbar-brand">Search movie</div>
+        <div className={cx(styles.navbar_brand, "navbar-brand")}>Search movie</div>
 
         <div className="d-flex align-content-center flex-wrap">
           <Link className={styles.home_link} to="/profile">Home</Link>

@@ -1,3 +1,6 @@
+$color-brend: #d39e00;
+$color-brend-rgb: rgb(255, 215, 34);
+
 .card {
   position: relative;
   width: 200px;
@@ -60,6 +63,8 @@
 
 .profile {
   background-color: #e8e8e8;
+  border-radius: 5px;
+  border: 1px solid rgba($color-brend-rgb, 0.3);
 }
 
 .btn {

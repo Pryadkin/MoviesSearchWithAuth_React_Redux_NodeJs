@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/auth.hook';
 import CardsMoviesOfProfile from '../../components/CardsMovies/CardsMoviesOfProfile';
 
 import styles from "./ProfilePage.module.scss";
+import cx from 'classnames';
 
 export const ProfilePage = () => {
   const { logout, userData } = useAuth();
@@ -29,7 +30,7 @@ export const ProfilePage = () => {
         <div className="d-flex flex-row bd-highlight">
           {
             userData
-              ? <div className="navbar-brand">{userData.userName}</div>
+              ? <div className={cx(styles.navbar_brand, "navbar-brand")}>{userData.userName}</div>
               : null
           }
 

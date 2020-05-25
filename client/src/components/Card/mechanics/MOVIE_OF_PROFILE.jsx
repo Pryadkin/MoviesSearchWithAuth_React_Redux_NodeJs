@@ -17,7 +17,7 @@ const CardMovieOfProfile = ({ poster, title, id }) => {
 
   return (
     <div className={styles.card}>
-      <div className={cx(styles.body, "card-profile")}>
+      <div className={cx(styles.body, styles.profile)}>
         <CardImage
           poster={poster}
           title={title}
