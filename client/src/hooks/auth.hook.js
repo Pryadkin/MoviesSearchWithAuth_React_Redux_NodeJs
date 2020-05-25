@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addLoginData, removeLoginData } from '../redux/actions';
+import { addLoginData, removeLoginData, cleanProfileMovies } from '../redux/actions';
 
 const storageName = 'userData';
 
@@ -16,6 +16,9 @@ export const useAuth = () => {
   const logout = () => {
     dispatch(removeLoginData());
     localStorage.removeItem(storageName);
+    setTimeout(() => {
+      dispatch(cleanProfileMovies());
+    });
   }
 
   useEffect(() => {

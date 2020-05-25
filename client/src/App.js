@@ -1,29 +1,32 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, } from 'react-router-dom';
 import { useRoutes } from './routes';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHttp } from './hooks/http.hook';
+import { getMoviesFromProfileOnServer } from './redux/actions';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
 function App() {
   const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
+  const userData = useSelector(state => state.authReducer.userData);
   const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
   const routes = useRoutes(isAuthenticated);
-  const { loading, request, error, clearError } = useHttp();
+  const { request } = useHttp();
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
-    if (profileMovies.length !== 0) {
-      console.log(profileMovies)
+    if (userData) {
       async function fetchData() {
         try {
-          const data = await request('http://localhost:5000/api/movie/add', 'POST', { profileMovies });
+          const movies = await request('http://localhost:5000/api/movies/add', 'PATCH', { userId: userData.userId, movies: profileMovies });
+          if (movies) dispatch(getMoviesFromProfileOnServer(movies));
         } catch (err) { }
       }
       fetchData();
     }
-  }, [profileMovies]);
+  }, [profileMovies, userData]);
 
   return (
     <Router>

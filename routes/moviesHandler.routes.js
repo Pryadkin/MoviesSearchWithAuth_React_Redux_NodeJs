@@ -1,32 +1,40 @@
 const { Router } = require('express');
 const router = Router();
+const User = require('../models/User');
 
-// /movie/add
-router.post('/add', async (req, res) => {
-  try {
-    const { email, movies } = req.body;
-
-    const email = await Movies.findOne({ email });
-
-    if (!movies) {
-      return res.status(400).json({ message: 'Пользователь не найден' });
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Неверный пароль, попробуйте снова' });  // Существует мнение, что данное сообщение лучше не отправлять, чтобы не помогать хакерам 
-    }
-
-    const token = jwt.sign(
-      { userId: user.id },
-      config.get('jwtSecret'),
-      { expiresIn: '1h' }
-    );
-
-    res.json({ token, userId: user.id });
-
-  } catch (err) {
-    res.status(500).json('{message: Что-то пошло не так');
+// /movies/add
+router.patch('/add', (req, res) => {
+  const id = req.body.userId;
+  const movies = req.body.movies;
+  if (movies) {
+    User.update({ _id: id }, { $set: { movies: req.body.movies } })
+      .exec()
+      .then(() => {
+        res.status(200);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({
+          error: err
+        })
+      });
+  } else {
+    User.findById(id)
+      .exec()
+      .then(data => {
+        if (data) {
+          res.status(200).json(data.movies);
+        } else {
+          res.status(404).json({
+            message: 'No valid entry found for provided ID'
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: err });
+      });
   }
 });
+
+module.exports = router;

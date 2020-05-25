@@ -1,22 +1,29 @@
 import {
   SEARCH_MOVIE,
   CLEAN_MOVIES,
+  CLEAN_PROFILE_MOVIES,
   ADD_MOVIE,
   REMOVE_MOVIE,
   IS_LOADING,
-  IS_WITH_PICTURE
+  IS_WITH_PICTURE,
+  GET_MOVIE
 } from './actions';
 
 const initialState = {
   movies: [],
   total_search_pages: null,
-  profileMovies: [],
+  profileMovies: null,
   isLoading: false,
   isWithPicture: false,
 };
 
 export const movieStateReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_MOVIE:
+      return {
+        ...state,
+        profileMovies: action.payload
+      };
     case SEARCH_MOVIE:
       return {
         ...state,
@@ -28,20 +35,20 @@ export const movieStateReducer = (state = initialState, action) => {
         ...state,
         movies: []
       };
+    case CLEAN_PROFILE_MOVIES:
+      return {
+        ...state,
+        profileMovies: null
+      };
     case ADD_MOVIE:
       return {
         ...state,
-        profileMovies: [...state.profileMovies, action.payload]
+        profileMovies: [action.payload, ...state.profileMovies]
       };
     case REMOVE_MOVIE:
       return {
         ...state,
         profileMovies: state.profileMovies.filter(movie => movie.id !== action.payload)
-      };
-    case "REMOVE_POST":
-      return {
-        ...state,
-        movies: state.movies.filter(movie => movie.id !== action.payload)
       };
     case IS_LOADING:
       return {
