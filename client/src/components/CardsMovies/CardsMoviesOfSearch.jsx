@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux';
 import MyLoader from '../MyLoader';
 import Pagination from '../Pagination/Pagination';
 
-const CardsMovies = ({ movies }) => {
+const CardsMovies = ({ movies, total_pages }) => {
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
   const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
-  const total_pages = useSelector(state => state.movieStateReducer.total_search_pages);
 
   const Cards = () => {
     return movies.map(movie => {

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 const SearchFilmsPage = () => {
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.movieStateReducer.movies);
+  const foundMovies = useSelector(state => state.movieStateReducer.foundMovies);
   const isWithPicture = useSelector(state => state.movieStateReducer.isWithPicture);
   const { movie, page } = useParams();
 
@@ -27,7 +27,13 @@ const SearchFilmsPage = () => {
     return (
       <>
         <SearchNavbar />
-        <CardsMoviesOfSearch movies={movies} />
+        {foundMovies ?
+          <CardsMoviesOfSearch
+            movies={foundMovies.results}
+            total_pages={foundMovies.total_pages}
+          />
+          : null
+        }
       </>
     )
   }

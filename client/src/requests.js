@@ -17,7 +17,6 @@ export const requestMovies = async (name, isWithPicture, page) => {
       }
     })
     const data = response.data;
-    const total_pages = data.total_pages;
     let dataMovies = data.results;
 
     // message if movies not found
@@ -36,7 +35,8 @@ export const requestMovies = async (name, isWithPicture, page) => {
       item.backdrop_path = `https://image.tmdb.org/t/p/w300${item.backdrop_path}`;
       return item;
     });
-    return { moviesWithFullPathForPosters, total_pages };
+    data.results = moviesWithFullPathForPosters;
+    return data;
 
   } catch (err) {
     console.log(`😱 Axios request failed: ${err}`);

@@ -9,7 +9,7 @@ import CardImage from '../CardImage';
 import CardTitle from '../CardTitle';
 
 const CardMovieOfSearch = ({ poster, title, id }) => {
-  const stateMovies = useSelector(state => state.movieStateReducer.movies);
+  const stateMovies = useSelector(state => state.movieStateReducer.foundMovies.results);
   const dispatch = useDispatch();
 
   const addMovieHandler = () => {

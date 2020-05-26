@@ -11,12 +11,9 @@ export const IS_WITH_PICTURE = "IS_WITH_PICTURE";
 export const ADD_LOGIN_DATA = "ADD_LOGIN_DATA";
 export const REMOVE_LOGIN_DATA = "REMOVE_LOGIN_DATA";
 
-export const searchMovie = (movie, total_pages) => ({
+export const searchMovie = (foundMovies) => ({
   type: SEARCH_MOVIE,
-  payload: {
-    movie,
-    total_pages
-  }
+  payload: { foundMovies }
 });
 
 export const getMovie = (movies) => ({
@@ -72,11 +69,8 @@ export const fetchMovie = (nameMovie, isWithPicture, page) => {
   return async dispatch => {
     dispatch(cleanMovies());
     dispatch(isLoading());
-    const {
-      moviesWithFullPathForPosters,
-      total_pages
-    } = await requestMovies(nameMovie, isWithPicture, page);
-    dispatch(searchMovie(moviesWithFullPathForPosters, total_pages))
+    const foundMovies = await requestMovies(nameMovie, isWithPicture, page);
+    dispatch(searchMovie(foundMovies));
     dispatch(isLoading());
   }
 };
