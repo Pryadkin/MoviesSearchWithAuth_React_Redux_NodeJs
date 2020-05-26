@@ -3,10 +3,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPicture } from '../../redux/actions';
 
-import styles from './SearchFilms.module.scss';
+import styles from './SearchNavbar.module.scss';
 import cx from 'classnames';
 
-const SearchFilms = () => {
+const SearchNavbar = () => {
   const isWithPicture = useSelector(state => state.movieStateReducer.isWithPicture);
   const [title, setTitle] = useState('');
   const dispatch = useDispatch();
@@ -68,4 +68,4 @@ const SearchFilms = () => {
   )
 };
 
-export default SearchFilms;
+export default SearchNavbar;

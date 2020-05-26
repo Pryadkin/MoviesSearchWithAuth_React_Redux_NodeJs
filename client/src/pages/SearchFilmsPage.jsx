@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import SearchFilms from '../components/SearchFilms/SearchFilms';
+import SearchNavbar from '../components/SearchNavbar/SearchNavbar';
 import CardsMoviesOfSearch from '../components/CardsMovies/CardsMoviesOfSearch';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovie } from '../redux/actions';
@@ -20,13 +20,13 @@ const SearchFilmsPage = () => {
   if (!movie) {
     return (
       <>
-        <SearchFilms />
+        <SearchNavbar />
       </>
     )
   } else {
     return (
       <>
-        <SearchFilms />
+        <SearchNavbar />
         <CardsMoviesOfSearch movies={movies} />
       </>
     )
