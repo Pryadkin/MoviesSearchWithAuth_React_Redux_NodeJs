@@ -50,6 +50,7 @@ const SearchNavbar = () => {
           <button
             type="button"
             className="btn btn-outline-light"
+            onClick={submitHandler}
           >
             Search
           </button>

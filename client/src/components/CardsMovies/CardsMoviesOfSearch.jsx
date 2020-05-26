@@ -1,15 +1,18 @@
 import React from 'react';
 import Card from '../Card';
-import { useSelector } from 'react-redux';
 import MyLoader from '../MyLoader';
 import Pagination from '../Pagination/Pagination';
+import TotalResults from '../TotalResults/TotalResults';
 
-const CardsMovies = ({ movies, total_pages }) => {
-  const isLoading = useSelector(state => state.movieStateReducer.isLoading);
-  const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
+const CardsMoviesOfSearch = ({ movies, isLoading, profileMovies }) => {
+  const {
+    results,
+    total_pages,
+    total_results
+  } = movies;
 
   const Cards = () => {
-    return movies.map(movie => {
+    return results.map(movie => {
       for (let i = 0; i < profileMovies.length; i++) {
         if (movie.id === profileMovies[i].id) {
           return (
@@ -41,6 +44,7 @@ const CardsMovies = ({ movies, total_pages }) => {
         amountBtns={5}
         totalPages={total_pages}
       />
+      <TotalResults totalResults={total_results} />
       <div className="container-fluid d-flex flex-wrap search-movies-container justify-content-center">
         {
           isLoading
@@ -52,4 +56,4 @@ const CardsMovies = ({ movies, total_pages }) => {
   )
 }
 
-export default CardsMovies;
+export default CardsMoviesOfSearch;

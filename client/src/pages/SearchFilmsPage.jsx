@@ -9,6 +9,8 @@ const SearchFilmsPage = () => {
   const dispatch = useDispatch();
   const foundMovies = useSelector(state => state.movieStateReducer.foundMovies);
   const isWithPicture = useSelector(state => state.movieStateReducer.isWithPicture);
+  const isLoading = useSelector(state => state.movieStateReducer.isLoading);
+  const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
   const { movie, page } = useParams();
 
   useEffect(() => {
@@ -29,8 +31,9 @@ const SearchFilmsPage = () => {
         <SearchNavbar />
         {foundMovies ?
           <CardsMoviesOfSearch
-            movies={foundMovies.results}
-            total_pages={foundMovies.total_pages}
+            movies={foundMovies}
+            isLoading={isLoading}
+            profileMovies={profileMovies}
           />
           : null
         }
