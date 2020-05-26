@@ -7,8 +7,9 @@ import { useDispatch } from 'react-redux';
 import { removeMovie } from '../../../redux/actions';
 import CardImage from '../CardImage';
 import CardTitle from '../CardTitle';
+import CardDate from '../CardDate';
 
-const CardMovieOfProfile = ({ poster, title, id }) => {
+const CardMovieOfProfile = ({ poster, title, id, releaseDate }) => {
   const dispatch = useDispatch();
 
   const removeMovieHandler = () => {
@@ -24,6 +25,8 @@ const CardMovieOfProfile = ({ poster, title, id }) => {
         />
 
         <CardTitle title={title} />
+
+        <CardDate releaseDate={releaseDate} />
 
         <button
           type="button"

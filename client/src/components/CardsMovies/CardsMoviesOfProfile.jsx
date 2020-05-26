@@ -19,6 +19,7 @@ const CardsMovies = ({ movies }) => {
                 id={movie.id}
                 poster={movie.poster_path}
                 title={movie.title}
+                releaseDate={movie.release_date}
               />
             )
           })

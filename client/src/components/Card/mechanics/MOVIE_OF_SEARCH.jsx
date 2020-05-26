@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addMovie } from '../../../redux/actions';
 import CardImage from '../CardImage';
 import CardTitle from '../CardTitle';
+import CardDate from '../CardDate';
 
-const CardMovieOfSearch = ({ poster, title, id }) => {
+const CardMovieOfSearch = ({ poster, title, id, releaseDate }) => {
   const stateMovies = useSelector(state => state.movieStateReducer.foundMovies.results);
   const dispatch = useDispatch();
 
@@ -26,6 +27,8 @@ const CardMovieOfSearch = ({ poster, title, id }) => {
         />
 
         <CardTitle title={title} />
+
+        <CardDate releaseDate={releaseDate} />
 
         <button
           type="button"

@@ -20,6 +20,7 @@ $color-brend-rgb: rgb(255, 215, 34);
 }
 
 .body  {    
+  position: relative;
   padding: 10px !important;  
   height: 100%;
 }
@@ -49,7 +50,7 @@ $color-brend-rgb: rgb(255, 215, 34);
   }
 }
 
-.title {
+.title, .date {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -59,6 +60,14 @@ $color-brend-rgb: rgb(255, 215, 34);
   height: 24%;
   font-size: 14px;
   margin-bottom: 0 !important;
+}
+
+.date {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 35;
+  height: 20px;  
 }
 
 .profile {
