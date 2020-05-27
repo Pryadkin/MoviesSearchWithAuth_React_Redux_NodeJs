@@ -24,6 +24,7 @@ const CardMovieOfSearch = ({ poster, title, id, releaseDate }) => {
         <CardImage
           poster={poster}
           title={title}
+          id={id}
         />
 
         <CardTitle title={title} />

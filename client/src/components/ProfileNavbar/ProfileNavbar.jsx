@@ -23,7 +23,12 @@ const ProfileNavbar = () => {
         }
 
         <div className="d-flex align-content-center flex-wrap">
-          <Link className={styles.search_link} to="/search">Search</Link>
+          <Link
+            className={styles.search_link}
+            to="/search"
+          >
+            Search
+          </Link>
         </div>
       </div>
 

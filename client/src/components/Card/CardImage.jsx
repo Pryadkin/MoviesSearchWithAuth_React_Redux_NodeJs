@@ -1,19 +1,20 @@
 import React from 'react';
 import nophoto from '../../img/nophoto.png';
+import { Link } from 'react-router-dom';
 
 import cx from 'classnames';
 import styles from './index.module.scss';
 
-const CardImage = ({ poster, title, href = '#' }) => {
+const CardImage = ({ poster, title, id }) => {
+  const ref = `/movie/${id}`;
+
   const ImageLink = props => (
-    <a
-      href={href}
-      target="_blank"
+    <Link
+      to={ref}
       title={title}
-      rel="noopener noreferrer"
     >
       {props.children}
-    </a>
+    </Link>
   );
 
   return (
