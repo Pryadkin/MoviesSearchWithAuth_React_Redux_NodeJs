@@ -5,6 +5,8 @@ import styles from './index.module.scss';
 const CardDate = ({ releaseDate }) => {
   const fullDate = new Date(releaseDate);
 
+  if (!releaseDate) return '';
+
   const year = fullDate.getFullYear();
   const month = fullDate.getMonth();
   const day = fullDate.getDate();

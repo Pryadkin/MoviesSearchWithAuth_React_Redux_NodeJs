@@ -4,31 +4,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailsMovie } from '../../redux/actions';
 
+import { Fade, Button } from 'react-bootstrap';
 
 const DetailsMovie = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailsMovie = useSelector(state => state.movieStateReducer.detailsMovie);
-  const [isLoading, setLoading] = useState('Loading');
-
-  // const preloaderImage = () => {
-  //   const image = new Image();
-  //   image.src = detailsMovie.poster_path;
-
-
-  //   return new Promise((resolve, reject) => {
-  //     const image = new Image();
-  //     image.onload = resolve(image);
-  //     image.onerror = reject;
-  //     image.src = detailsMovie.poster_path;
-  //   })
-  // // }
-
-  // const pre = preloaderImage()
-  //   .then(image => {
-  //     return image
-  //   })
-  //   .catch(err => console.log(err))
+  const [open, setOpen] = useState(false);
 
   const Details = () => {
     const {
@@ -38,17 +20,25 @@ const DetailsMovie = () => {
       release_date
     } = detailsMovie;
 
-
+    setTimeout(() => {
+      setOpen(true);
+    }, 500);
 
     return (
       <>
-        <h2>
-          {title}
-        </h2>
 
-        <img src={poster_path} alt="" />
+        <Fade in={open}>
+          <div id="example-fade-text">
+            <h2>
+              {title}
+            </h2>
 
-        <p>{overview}</p>
+            <img src={poster_path} alt="" />
+
+            <p>{overview}</p>
+          </div>
+        </Fade>
+
       </>
     )
   };
@@ -64,12 +54,14 @@ const DetailsMovie = () => {
       dispatch(getDetailsMovie(id));
     }
 
-  }, [id]);
+  }, [id, detailsMovie]);
 
   return (
     <>
+
       <DetailsMoviesNavbar id={id} />
       {detailsMovie ? <Details /> : "Loading"}
+
 
     </>
   )

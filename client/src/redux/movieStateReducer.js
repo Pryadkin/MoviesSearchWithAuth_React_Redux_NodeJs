@@ -6,12 +6,13 @@ import {
   REMOVE_MOVIE,
   IS_LOADING,
   IS_WITH_PICTURE,
-  GET_MOVIE
+  GET_MOVIE,
+  GET_DETAILS
 } from './actions';
 
 const initialState = {
   foundMovies: null,
-  total_search_pages: null,
+  detailsMovie: null,
   profileMovies: null,
   isLoading: false,
   isWithPicture: true,
@@ -23,6 +24,11 @@ export const movieStateReducer = (state = initialState, action) => {
       return {
         ...state,
         profileMovies: action.payload
+      };
+    case GET_DETAILS:
+      return {
+        ...state,
+        detailsMovie: action.payload
       };
     case SEARCH_MOVIE:
       return {
