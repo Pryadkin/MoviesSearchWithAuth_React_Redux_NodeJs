@@ -64,7 +64,7 @@ const DetailsMovie = () => {
       dispatch(getDetailsMovie(id));
     }
 
-  }, [id])
+  }, [id]);
 
   return (
     <>

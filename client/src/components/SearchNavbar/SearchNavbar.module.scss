@@ -1,10 +1,10 @@
-.home_link {
-  color: white;
-
-  &:hover {
-    text-decoration: none;
-    color: lightgrey;
-  }
+.navbar {
+  position: relative;
+  height: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .only_picture {
@@ -21,3 +21,4 @@
   color: gold !important;
   padding-top: 0 !important;
 }
+

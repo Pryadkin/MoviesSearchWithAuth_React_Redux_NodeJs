@@ -3,6 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPicture } from '../../redux/actions';
 
+import { Navbar, Nav, Button, Form, FormControl } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
 import styles from './SearchNavbar.module.scss';
 import cx from 'classnames';
 
@@ -25,47 +28,49 @@ const SearchNavbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
-      <div className="d-flex flex-row bd-highlight">
-        <div className={cx(styles.navbar_brand, "navbar-brand")}>Search movie</div>
+    <Navbar
+      bg="dark"
+      variant="dark"
+      className={styles.navbar}
+    >
+      <Navbar.Brand className={styles.navbar_brand}>
+        Search movie
+      </Navbar.Brand>
 
-        <div className="d-flex align-content-center flex-wrap">
-          <Link className={styles.home_link} to="/profile">Home</Link>
-        </div>
-      </div>
+      <Nav className="mr-auto">
+        <LinkContainer to="/profile">
+          <Nav.Link>
+            Home
+            </Nav.Link>
+        </LinkContainer>
+      </Nav>
 
-      <div className="d-flex flex-row-reverse bd-highlight">
-        <form
-          className="form-inline my-2 my-lg-0"
-          onSubmit={submitHandler}
+      <Nav
+        className={cx(styles.only_picture, (isWithPicture ? styles.gold : null), "mr-5")}
+        onClick={setPictureHandler}
+      >
+        only with picture
+        </Nav>
+
+      <Form inline>
+        <FormControl
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          className="mr-3"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+
+        <Button
+          type="submit"
+          variant="outline-info"
+          onClick={submitHandler}
         >
-          <input
-            className="form-control mr-sm-3"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
-          <button
-            type="button"
-            className="btn btn-outline-light"
-            onClick={submitHandler}
-          >
-            Search
-          </button>
-        </form>
-
-        <div className={cx(
-          styles.only_picture,
-          (isWithPicture ? styles.gold : null),
-          "d-flex align-content-center flex-wrap mr-5")}
-          onClick={setPictureHandler}
-        >
-          only with picture
-        </div>
-      </div>
-    </nav>
+          Search
+          </Button>
+      </Form>
+    </Navbar>
   )
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth.hook';
+
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import styles from "./ProfileNavbar.module.scss";
 import cx from 'classnames';
@@ -14,32 +16,35 @@ const ProfileNavbar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between">
-      <div className="d-flex flex-row bd-highlight">
+    <Navbar
+      bg="dark"
+      variant="dark"
+      className={styles.navbar}
+    >
+      <Navbar.Brand>
         {
           userData
-            ? <div className={cx(styles.navbar_brand, "navbar-brand")}>{userData.userName}</div>
+            ? <div className={cx(styles.navbar_brand, "navbar-brand")}>
+              {userData.userName}
+            </div>
             : null
         }
-
-        <div className="d-flex align-content-center flex-wrap">
-          <Link
-            className={styles.search_link}
-            to="/search"
-          >
+      </Navbar.Brand>
+      <Nav className="mr-auto">
+        <LinkContainer to="/search">
+          <Nav.Link>
             Search
-          </Link>
-        </div>
-      </div>
+            </Nav.Link>
+        </LinkContainer>
+      </Nav>
 
-      <button
-        type="button"
-        className="btn btn-outline-light"
+      <Button
+        variant="outline-info"
         onClick={logoutHandler}
       >
         Log out
-      </button>
-    </nav>
+        </Button>
+    </Navbar >
   )
 }
 
