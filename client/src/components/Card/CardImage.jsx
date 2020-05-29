@@ -19,22 +19,11 @@ const CardImage = ({ poster, title, id }) => {
 
   return (
     <>
-      {
-        // catch path with "w300null": https://image.tmdb.org/t/p/w300null
-        !poster.includes('null')
-          ?
-          <div className={styles.image}>
-            <ImageLink>
-              <img src={poster} alt={title} />
-            </ImageLink>
-          </div>
-          :
-          <div className={cx(styles.image, styles.nophoto)}>
-            <ImageLink>
-              <img src={nophoto} alt={title} />
-            </ImageLink>
-          </div>
-      }
+      <div className={cx(styles.image, !poster && styles.nophoto)}>
+        <ImageLink>
+          <img src={poster || nophoto} alt={title} />
+        </ImageLink>
+      </div>
     </>
   )
 };

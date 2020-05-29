@@ -1,7 +1,7 @@
-export const getFullPathForPosters = (data, quality = 'w300') => {
+const getFullPathForPosters = (data, quality = 'w300') => {
   if (Array.isArray(data)) {
     return data.map((item) => {
-      item.poster_path = getPoster(data.poster_path);
+      item.poster_path = getPoster(item.poster_path);
       return item;
     });
   }
@@ -13,6 +13,10 @@ export const getFullPathForPosters = (data, quality = 'w300') => {
 
   return data;
 };
+
+export default getFullPathForPosters;
+
+
 
 /* --------------------- To get configuration -----------------
 const res = await api.get('/configuration', { params: { api_key } });

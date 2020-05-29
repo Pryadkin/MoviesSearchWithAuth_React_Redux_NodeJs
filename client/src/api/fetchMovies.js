@@ -1,4 +1,5 @@
 import { api, api_key } from './baseUrl';
+import getFullPathForPosters from './helpers/getFullPathForPosters';
 
 export const fetchMovies = async (name, isWithPicture, page) => {
   const params = {
@@ -30,11 +31,3 @@ export const fetchMovies = async (name, isWithPicture, page) => {
     console.log(`😱 Axios request failed: ${err}`);
   }
 }
-
-const getFullPathForPosters = (dataMovies, quality = 'w300') => {
-  return dataMovies.map((item) => {
-    item.poster_path = `https://image.tmdb.org/t/p/${quality}${item.poster_path}`;
-    item.backdrop_path = `https://image.tmdb.org/t/p/${quality}${item.backdrop_path}`;
-    return item;
-  });
-};
