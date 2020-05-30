@@ -31,6 +31,12 @@ const ProfileNavbar = () => {
         }
       </Navbar.Brand>
       <Nav className="mr-auto">
+        <LinkContainer to="/profile">
+          <Nav.Link active>
+            Home
+            </Nav.Link>
+        </LinkContainer>
+
         <LinkContainer to="/search">
           <Nav.Link>
             Search

@@ -18,7 +18,7 @@ const initialState = {
   profileMovies: null,
   isLoading: false,
   isWithPicture: true,
-  currentNomberPagination: 1
+  currentNumberPagination: 1
 };
 
 export const movieStateReducer = (state = initialState, action) => {
@@ -76,7 +76,7 @@ export const movieStateReducer = (state = initialState, action) => {
     case SET_NUMBER_PAGINATION:
       return {
         ...state,
-        currentNomberPagination: action.payload
+        currentNumberPagination: action.payload
       };
     default: return state;
   }

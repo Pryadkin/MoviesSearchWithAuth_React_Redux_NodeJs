@@ -7,25 +7,27 @@ import { useParams } from 'react-router-dom';
 
 const SearchFilmsPage = () => {
   const dispatch = useDispatch();
+  const { movie, page } = useParams();
   const foundMovies = useSelector(state => state.movieStateReducer.foundMovies);
   const isWithPicture = useSelector(state => state.movieStateReducer.isWithPicture);
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
   const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
-  const { movie, page } = useParams();
+  const detailsMovie = useSelector(state => state.movieStateReducer.detailsMovie);
 
   useEffect(() => {
+    // if open details movie and then closed one, dispatch doesn't executed
     if (movie) {
-      console.log('dispatch')
-      dispatch(fetchMovie(movie, isWithPicture, page));
+      if (!detailsMovie) {
+        console.log('dispatsh')
+        dispatch(fetchMovie(movie, isWithPicture, page));
+      } else {
+        dispatch(cleanDetails());
+      }
     }
   }, [movie, page, isWithPicture]);
 
   if (!movie) {
-    return (
-      <>
-        <SearchNavbar />
-      </>
-    )
+    return <SearchNavbar />
   } else {
     return (
       <>

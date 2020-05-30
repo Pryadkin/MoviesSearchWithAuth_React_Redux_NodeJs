@@ -9,10 +9,9 @@ import { setNumberPagination } from '../../redux/actions';
 
 const Pagination = ({ amountBtns = 10, totalPages }) => {
   const dispatch = useDispatch();
-  const currentBtn = useSelector(state => state.movieStateReducer.currentNomberPagination);
+  const currentBtn = useSelector(state => state.movieStateReducer.currentNumberPagination);
   const history = useHistory();
   const { movie } = useParams();
-  // const [currentBtn, setCurrentBtn] = useState(1);
   const [firstBtn, setFirstBtn] = useState(1);
 
   const finalAmountBtns = amountBtns > totalPages ? totalPages : amountBtns;
@@ -23,15 +22,9 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
   const arrowBtn = new Array(finalAmountBtns).fill(null);
 
   useEffect(() => {
-    console.log(currentBtn)
     history.push(`/search/${movie}/${currentBtn}`);
     paginationOffset();
   }, [currentBtn]);
-
-  useEffect(() => {
-    // dispatch(setNumberPagination(1))
-    // setCurrentBtn(1);
-  }, [movie]);
 
   const paginationOffset = () => {
     const offset = currentBtn - centerBtn;
@@ -48,13 +41,11 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
   const arrowLeftOnClickHandler = () => {
     setFirstBtn(beginBtn);
     dispatch(setNumberPagination(beginBtn))
-    // setCurrentBtn(beginBtn);
   };
 
   const arrowRightOnClickHandler = () => {
     setFirstBtn(endBtn);
     dispatch(setNumberPagination(totalPages))
-    // setCurrentBtn(totalPages);
   };
 
   return (
@@ -76,7 +67,6 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
           return (
             <button
               key={index}
-              // onClick={() => setCurrentBtn(titleBtn)}
               onClick={() => dispatch(setNumberPagination(titleBtn))}
               className={cx(
                 (titleBtn === currentBtn ? "btn-secondary" : "btn-light"),

@@ -1,23 +1,16 @@
 import React from 'react';
 import nophoto from '../../img/nophoto.png';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import cx from 'classnames';
 import styles from './index.module.scss';
 
 const CardImage = ({ poster, title, id }) => {
-  const { movie, page } = useParams();
-  // const history = useHistory();
-  // const ref = `/movie/${id}`;
-
-  // const onClickHandler = () => {
-  //   history.push(`/search/${movie}/${page}/${id}`);
-  // };
+  const ref = `/details/${id}`;
 
   const ImageLink = props => (
     <Link
-      to={`/search/${movie}/${page}/${id}`}
-
+      to={ref}
       title={title}
     >
       {props.children}

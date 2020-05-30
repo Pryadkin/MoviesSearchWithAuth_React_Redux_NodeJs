@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPicture } from '../../redux/actions';
+import { setPicture, setNumberPagination } from '../../redux/actions';
 
 import { Navbar, Nav, Button, Form, FormControl } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -24,6 +24,7 @@ const SearchNavbar = () => {
     if (title) {
       history.push(`/search/${title}/1`)
       setTitle('');
+      dispatch(setNumberPagination(1));
     }
   };
 
@@ -38,11 +39,19 @@ const SearchNavbar = () => {
       </Navbar.Brand>
 
       <Nav className="mr-auto">
-        <LinkContainer to="/profile">
-          <Nav.Link>
-            Home
+        <Nav className="mr-auto">
+          <LinkContainer to="/prifile">
+            <Nav.Link>
+              Home
             </Nav.Link>
-        </LinkContainer>
+          </LinkContainer>
+
+          <LinkContainer to="/search">
+            <Nav.Link active>
+              Search
+            </Nav.Link>
+          </LinkContainer>
+        </Nav>
       </Nav>
 
       <Nav
