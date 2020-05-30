@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import doubleArrowIcon from '../../img/icons/double-arrow.svg';
 
 import styles from './Pagination.module.scss';
 import cx from 'classnames';
+import { setNumberPagination } from '../../redux/actions';
 
 const Pagination = ({ amountBtns = 10, totalPages }) => {
+  const dispatch = useDispatch();
+  const currentBtn = useSelector(state => state.movieStateReducer.currentNomberPagination);
   const history = useHistory();
   const { movie } = useParams();
-  const [currentBtn, setCurrentBtn] = useState(1);
+  // const [currentBtn, setCurrentBtn] = useState(1);
   const [firstBtn, setFirstBtn] = useState(1);
 
   const finalAmountBtns = amountBtns > totalPages ? totalPages : amountBtns;
@@ -19,12 +23,14 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
   const arrowBtn = new Array(finalAmountBtns).fill(null);
 
   useEffect(() => {
+    console.log(currentBtn)
     history.push(`/search/${movie}/${currentBtn}`);
     paginationOffset();
   }, [currentBtn]);
 
   useEffect(() => {
-    setCurrentBtn(1);
+    // dispatch(setNumberPagination(1))
+    // setCurrentBtn(1);
   }, [movie]);
 
   const paginationOffset = () => {
@@ -41,12 +47,14 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
 
   const arrowLeftOnClickHandler = () => {
     setFirstBtn(beginBtn);
-    setCurrentBtn(beginBtn);
+    dispatch(setNumberPagination(beginBtn))
+    // setCurrentBtn(beginBtn);
   };
 
   const arrowRightOnClickHandler = () => {
     setFirstBtn(endBtn);
-    setCurrentBtn(totalPages);
+    dispatch(setNumberPagination(totalPages))
+    // setCurrentBtn(totalPages);
   };
 
   return (
@@ -68,7 +76,8 @@ const Pagination = ({ amountBtns = 10, totalPages }) => {
           return (
             <button
               key={index}
-              onClick={() => setCurrentBtn(titleBtn)}
+              // onClick={() => setCurrentBtn(titleBtn)}
+              onClick={() => dispatch(setNumberPagination(titleBtn))}
               className={cx(
                 (titleBtn === currentBtn ? "btn-secondary" : "btn-light"),
                 "btn  mx-2 border border-dark")}

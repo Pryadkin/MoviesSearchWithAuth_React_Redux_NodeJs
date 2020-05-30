@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import SearchNavbar from '../components/SearchNavbar/SearchNavbar';
 import CardsMoviesOfSearch from '../components/CardsMovies/CardsMoviesOfSearch';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMovie } from '../redux/actions';
+import { fetchMovie, cleanDetails } from '../redux/actions';
 import { useParams } from 'react-router-dom';
 
 const SearchFilmsPage = () => {
@@ -15,9 +15,10 @@ const SearchFilmsPage = () => {
 
   useEffect(() => {
     if (movie) {
+      console.log('dispatch')
       dispatch(fetchMovie(movie, isWithPicture, page));
     }
-  }, [movie, page, isWithPicture])
+  }, [movie, page, isWithPicture]);
 
   if (!movie) {
     return (

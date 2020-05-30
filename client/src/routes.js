@@ -21,7 +21,11 @@ export const useRoutes = isAuthenticated => {
           <SearchFilmsPage />
         </Route>
 
-        <Route path="/movie/:id" exact>
+        {/* <Route path="/movie/:id" exact>
+          <DetailsMovie />
+        </Route> */}
+
+        <Route path="/search/:movie/:page/:id" exact>
           <DetailsMovie />
         </Route>
 

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './index.module.scss';
 
 const CardTitle = ({ title }) => {
-  const maxCountLetters = 55;
+  const maxCountLetters = 45;
 
   const TrimTitle = () => {
     if (title.length > maxCountLetters) {

@@ -7,7 +7,9 @@ import {
   IS_LOADING,
   IS_WITH_PICTURE,
   GET_MOVIE,
-  GET_DETAILS
+  ADD_DETAILS,
+  CLEAN_DETAILS,
+  SET_NUMBER_PAGINATION
 } from './actions';
 
 const initialState = {
@@ -16,6 +18,7 @@ const initialState = {
   profileMovies: null,
   isLoading: false,
   isWithPicture: true,
+  currentNomberPagination: 1
 };
 
 export const movieStateReducer = (state = initialState, action) => {
@@ -25,10 +28,15 @@ export const movieStateReducer = (state = initialState, action) => {
         ...state,
         profileMovies: action.payload
       };
-    case GET_DETAILS:
+    case ADD_DETAILS:
       return {
         ...state,
         detailsMovie: action.payload
+      };
+    case CLEAN_DETAILS:
+      return {
+        ...state,
+        detailsMovie: null
       };
     case SEARCH_MOVIE:
       return {
@@ -64,6 +72,11 @@ export const movieStateReducer = (state = initialState, action) => {
       return {
         ...state,
         isWithPicture: !state.isWithPicture
+      };
+    case SET_NUMBER_PAGINATION:
+      return {
+        ...state,
+        currentNomberPagination: action.payload
       };
     default: return state;
   }

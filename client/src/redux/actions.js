@@ -2,7 +2,8 @@ import { fetchMovies } from '../api/fetchMovies';
 import { fetchDetails } from '../api/fetchDetails';
 
 export const GET_MOVIE = "GET_MOVIE";
-export const GET_DETAILS = "GET_DETAILS";
+export const ADD_DETAILS = "ADD_DETAILS";
+export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const ADD_MOVIE = "ADD_MOVIE";
 export const REMOVE_MOVIE = "REMOVE_MOVIE";
 export const SEARCH_MOVIE = "SEARCH_MOVIE";
@@ -12,6 +13,7 @@ export const IS_LOADING = "IS_LOADING";
 export const IS_WITH_PICTURE = "IS_WITH_PICTURE";
 export const ADD_LOGIN_DATA = "ADD_LOGIN_DATA";
 export const REMOVE_LOGIN_DATA = "REMOVE_LOGIN_DATA";
+export const SET_NUMBER_PAGINATION = "SET_NUMBER_PAGINATION";
 
 export const searchMovie = (foundMovies) => ({
   type: SEARCH_MOVIE,
@@ -21,22 +23,26 @@ export const searchMovie = (foundMovies) => ({
 export const getMovie = (movies) => ({
   type: GET_MOVIE,
   payload: movies
-})
+});
 
-export const getDetails = (details) => ({
-  type: GET_DETAILS,
+export const addDetails = (details) => ({
+  type: ADD_DETAILS,
   payload: details
-})
+});
+
+export const cleanDetails = () => ({
+  type: CLEAN_DETAILS
+});
 
 export const addMovie = (movie) => ({
   type: ADD_MOVIE,
   payload: movie
-})
+});
 
 export const removeMovie = (id) => ({
   type: REMOVE_MOVIE,
   payload: id
-})
+});
 
 export const cleanMovies = () => ({
   type: CLEAN_MOVIES
@@ -60,6 +66,11 @@ export const addLoginData = (token, userData) => ({
   userData
 });
 
+export const setNumberPagination = (numberPagination) => ({
+  type: SET_NUMBER_PAGINATION,
+  payload: numberPagination
+});
+
 export const removeLoginData = () => ({
   type: REMOVE_LOGIN_DATA
 });
@@ -74,13 +85,9 @@ export const getMoviesFromProfileOnServer = (movies) => {
 
 export const getDetailsMovie = (id) => {
   return async dispatch => {
-    if (id === 'clean') {
-      dispatch(getDetails(null));
-    } else {
-      const details = await fetchDetails(id);
-      dispatch(getDetails(details));
-    }
-  };
+    const details = await fetchDetails(id);
+    dispatch(addDetails(details));
+  }
 };
 
 export const fetchMovie = (nameMovie, isWithPicture, page) => {
