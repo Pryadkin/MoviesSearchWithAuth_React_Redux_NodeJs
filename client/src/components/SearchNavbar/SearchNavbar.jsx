@@ -23,8 +23,8 @@ const SearchNavbar = () => {
     e.preventDefault();
     if (title) {
       history.push(`/search/${title}/1`)
-      setTitle('');
       dispatch(setNumberPagination(1));
+      setTitle('');
     }
   };
 

@@ -92,6 +92,7 @@ export const getDetailsMovie = (id) => {
 
 export const fetchMovie = (nameMovie, isWithPicture, page) => {
   return async dispatch => {
+    console.log('fetchMovie')
     dispatch(cleanMovies());
     dispatch(isLoading());
     const foundMovies = await fetchMovies(nameMovie, isWithPicture, page);

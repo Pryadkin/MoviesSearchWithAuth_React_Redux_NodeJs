@@ -16,7 +16,7 @@ const SearchFilmsPage = () => {
   const detailsMovie = useSelector(state => state.movieStateReducer.detailsMovie);
 
   useEffect(() => {
-    // if open details movie and then closed one, dispatch doesn't executed
+    // if open details movie and then closed it, dispatch doesn't executed
     if (movie) {
       if (!detailsMovie) {
         dispatch(fetchMovie(movie, isWithPicture, page));
