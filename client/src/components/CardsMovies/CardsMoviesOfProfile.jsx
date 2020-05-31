@@ -1,30 +1,36 @@
 import React from 'react';
 import Card from '../Card';
 import { useSelector } from 'react-redux';
-import MyLoader from '../MyLoader';
+import MyLoader from '../MyLoader/MyLoader';
+
+import { Container, Row, Col } from 'react-bootstrap';
 
 const CardsMovies = ({ movies }) => {
   const isLoading = useSelector(state => state.movieStateReducer.isLoading);
 
   return (
-    <div className="profile-movies-container container-fluid d-flex flex-wrap  justify-content-center">
-      {movies
-        ? isLoading
-          ? <MyLoader />
-          : movies.map(movie => {
-            return (
-              <Card
-                mechanics='MOVIE_OF_PROFILE'
-                key={movie.id}
-                id={movie.id}
-                poster={movie.poster_path}
-                title={movie.title}
-                releaseDate={movie.release_date}
-              />
-            )
-          })
-        : null}
-    </div>
+    <Container fluid>
+      <Row>
+        <Col className="justify-content-center flex-wrap d-flex">
+          {movies
+            ? isLoading
+              ? <MyLoader />
+              : movies.map(movie => {
+                return (
+                  <Card
+                    mechanics='MOVIE_OF_PROFILE'
+                    key={movie.id}
+                    id={movie.id}
+                    poster={movie.poster_path}
+                    title={movie.title}
+                    releaseDate={movie.release_date}
+                  />
+                )
+              })
+            : null}
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

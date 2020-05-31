@@ -4,6 +4,7 @@ import CardsMoviesOfSearch from '../components/CardsMovies/CardsMoviesOfSearch';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMovie, cleanDetails } from '../redux/actions';
 import { useParams } from 'react-router-dom';
+import MyLoader from '../components/MyLoader/MyLoader';
 
 const SearchFilmsPage = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ const SearchFilmsPage = () => {
     // if open details movie and then closed one, dispatch doesn't executed
     if (movie) {
       if (!detailsMovie) {
-        console.log('dispatsh')
         dispatch(fetchMovie(movie, isWithPicture, page));
       } else {
         dispatch(cleanDetails());
@@ -27,8 +27,11 @@ const SearchFilmsPage = () => {
   }, [movie, page, isWithPicture]);
 
   if (!movie) {
+
     return <SearchNavbar />
+
   } else {
+
     return (
       <>
         <SearchNavbar />
@@ -38,10 +41,11 @@ const SearchFilmsPage = () => {
             isLoading={isLoading}
             profileMovies={profileMovies}
           />
-          : null
+          : <MyLoader />
         }
       </>
     )
+
   }
 }
 

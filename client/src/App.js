@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHttp } from './hooks/http.hook';
 import { getMoviesFromProfileOnServer } from './redux/actions';
 
-import './App.scss';
-
 function App() {
   const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
   const userData = useSelector(state => state.authReducer.userData);
