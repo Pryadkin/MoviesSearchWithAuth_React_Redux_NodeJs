@@ -68,14 +68,14 @@ const DetailsMovie = () => {
               isBtnActive
                 ?
                 <Button
-                  variant="outline-secondary"
+                  variant="primary"
                   onClick={removeMovieHandler}
                 >
                   REMOVE
                 </Button>
                 :
                 <Button
-                  variant="outline-secondary"
+                  variant="primary"
                   onClick={addMovieHandler}
                 >
                   ADD
