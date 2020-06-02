@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "jwtSecret": "very secret string",
+  "mongoUri": "mongodb+srv://filmsearch:filmsearch@cluster0-ovt2j.gcp.mongodb.net/filmsearch?retryWrites=true&w=majority"
+}
