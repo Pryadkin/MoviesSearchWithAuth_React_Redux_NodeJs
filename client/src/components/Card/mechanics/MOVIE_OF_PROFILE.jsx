@@ -8,13 +8,19 @@ import { removeMovie } from '../../../redux/actions';
 import CardImage from '../CardImage';
 import CardTitle from '../CardTitle';
 import CardDate from '../CardDate';
+import { useHistory } from 'react-router-dom';
 
 const CardMovieOfProfile = ({ poster, title, id, releaseDate }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const removeMovieHandler = () => {
     dispatch(removeMovie(id))
   };
+
+  const getLink = () => {
+    history.push(`/profile/${id}`)
+  }
 
   return (
     <div className={styles.card}>
@@ -23,6 +29,7 @@ const CardMovieOfProfile = ({ poster, title, id, releaseDate }) => {
           poster={poster}
           title={title}
           id={id}
+          getLink={getLink}
         />
 
         <CardTitle title={title} />

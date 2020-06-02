@@ -1,21 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import DetailsMoviesNavbar from '../../components/DetailsMoviesNavbar/DetailsMoviesNavbar';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetailsMovie } from '../../redux/actions';
+import { getDetailsMovie, addMovie, removeMovie } from '../../redux/actions';
 import ReactStars from 'react-stars';
 import getStyledBudget from './helpers/getStyledBudget';
 
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import dollarIcon from '../../img/icons/dollarIcon.png';
 import styles from './DetailsMovie.module.scss';
 import cx from 'classnames';
 
 const DetailsMovie = () => {
-  const { id } = useParams();
+  const { page, id } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
   const detailsMovie = useSelector(state => state.movieStateReducer.detailsMovie);
+  const foundMovies = useSelector(state => state.movieStateReducer.foundMovies);
+  const profileMovies = useSelector(state => state.movieStateReducer.profileMovies);
   const [isLoading, setLoading] = useState(false);
+  const [isBtnActive, setBtnActive] = useState(
+    profileMovies.find(movie => movie.id === +id)
+  );
+
+  const addMovieHandler = () => {
+    // find target movie from movies on search movies page
+    const targetMovie = foundMovies.results.find(movie => movie.id === +id);
+    dispatch(addMovie(targetMovie));
+    setBtnActive(!isBtnActive);
+  };
+
+  const removeMovieHandler = () => {
+    dispatch(removeMovie(+id));
+
+    // if movie is located in the search movies page, we don't execute history.push
+    if (!page) {
+      history.push('/profile');
+    }
+    setBtnActive(!isBtnActive);
+  };
 
   const Details = () => {
     const {
@@ -32,14 +55,33 @@ const DetailsMovie = () => {
     return (
       <Container className={cx(styles.container, "p-0 px-5 px-md-0")}>
         <Row>
-          <Col lg={4} md={6} className="d-flex justify-content-center justify-content-sm-center">
+          <Col lg={5} md={6} className={cx(styles.container_img, "justify-content-center justify-content-sm-start")}>
             <Image className={styles.poster} src={poster_path} alt={title} />
           </Col>
 
-          <Col lg={8} md={6}>
+          <Col lg={7} md={6}>
             <h2>
               {title}
             </h2>
+
+            {
+              isBtnActive
+                ?
+                <Button
+                  variant="outline-secondary"
+                  onClick={removeMovieHandler}
+                >
+                  REMOVE
+                </Button>
+                :
+                <Button
+                  variant="outline-secondary"
+                  onClick={addMovieHandler}
+                >
+                  ADD
+                </Button>
+            }
+
 
             <ul>
               {
@@ -130,9 +172,9 @@ const DetailsMovie = () => {
                 <p>{overview}</p>
                 : null
             }
-          </Col>
-        </Row>
-      </Container>
+          </Col >
+        </Row >
+      </Container >
     )
   };
 
@@ -144,7 +186,11 @@ const DetailsMovie = () => {
   return (
     <>
       <DetailsMoviesNavbar id={id} />
-      {isLoading && detailsMovie ? <Details /> : "Loading"}
+      {
+        isLoading && detailsMovie
+          ? <Details />
+          : null
+      }
     </>
   )
 }

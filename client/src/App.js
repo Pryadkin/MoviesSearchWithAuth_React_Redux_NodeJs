@@ -20,7 +20,9 @@ function App() {
         try {
           const movies = await request('http://localhost:5000/api/movies/add', 'PATCH', { userId: userData.userId, movies: profileMovies });
           if (movies) dispatch(getMoviesFromProfileOnServer(movies));
-        } catch (err) { }
+        } catch (err) {
+          console.log(`😱 Request failed: ${err}`);
+        }
       }
       fetchData();
     }
